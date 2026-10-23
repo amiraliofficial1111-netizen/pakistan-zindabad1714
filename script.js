@@ -745,14 +745,24 @@ if (contactForm) {
   title.id = "guideTitle";
   title.textContent = "Reading guide";
   const subtitle = document.createElement("p");
-  subtitle.textContent = "Answers from this site";
+  subtitle.textContent = "";
   headCopy.append(title, subtitle);
+  const actions = document.createElement("div");
+  actions.className = "guide-head-actions";
+  const settingsBtn = document.createElement("button");
+  settingsBtn.type = "button";
+  settingsBtn.className = "guide-settings";
+  settingsBtn.setAttribute("aria-label", "Chat settings");
+  settingsBtn.setAttribute("aria-expanded", "false");
+  settingsBtn.setAttribute("aria-controls", "guideSettings");
+  settingsBtn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 13a7.8 7.8 0 0 0 .1-2l2-1.5-2-3.5-2.4 1a7.8 7.8 0 0 0-1.7-1l-.4-2.6h-4l-.4 2.6a7.8 7.8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5a7.8 7.8 0 0 0 .1 2l-2 1.5 2 3.5 2.4-1a7.8 7.8 0 0 0 1.7 1l.4 2.6h4l.4-2.6a7.8 7.8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5Z"/></svg>';
   const close = document.createElement("button");
   close.type = "button";
   close.className = "guide-close";
   close.setAttribute("aria-label", "Close the reading guide");
   close.textContent = "×";
-  head.append(headCopy, close);
+  actions.append(settingsBtn, close);
+  head.append(headCopy, actions);
 
   const log = document.createElement("div");
   log.className = "guide-log";
@@ -776,7 +786,7 @@ if (contactForm) {
   input.type = "text";
   input.maxLength = 400;
   input.autocomplete = "off";
-  input.placeholder = "Ask about the book";
+  input.placeholder = "Type your reply";
   const send = document.createElement("button");
   send.type = "submit";
   send.textContent = "Send";
@@ -784,9 +794,41 @@ if (contactForm) {
 
   const note = document.createElement("p");
   note.className = "guide-note";
-  note.textContent = "Grounded in the public pages. Not a stand-in for the author.";
+  note.hidden = true;
 
-  panel.append(head, log, chips, form, note);
+  const settingsView = document.createElement("div");
+  settingsView.className = "guide-settings-view";
+  settingsView.id = "guideSettings";
+  settingsView.hidden = true;
+  const settingsKicker = document.createElement("p");
+  settingsKicker.className = "guide-settings-kicker";
+  settingsKicker.textContent = "Questions";
+  const settingsHint = document.createElement("p");
+  settingsHint.className = "guide-settings-hint";
+  settingsHint.textContent = "These appear one at a time. Saved on this browser.";
+  const settingsList = document.createElement("div");
+  settingsList.className = "guide-settings-list";
+  const addQuestion = document.createElement("button");
+  addQuestion.type = "button";
+  addQuestion.className = "guide-settings-add";
+  addQuestion.textContent = "Add question";
+  const settingsActions = document.createElement("div");
+  settingsActions.className = "guide-settings-actions";
+  const saveQuestionsBtn = document.createElement("button");
+  saveQuestionsBtn.type = "button";
+  saveQuestionsBtn.className = "guide-settings-save";
+  saveQuestionsBtn.textContent = "Save";
+  const resetQuestionsBtn = document.createElement("button");
+  resetQuestionsBtn.type = "button";
+  resetQuestionsBtn.className = "guide-settings-reset";
+  resetQuestionsBtn.textContent = "Reset";
+  settingsActions.append(saveQuestionsBtn, resetQuestionsBtn);
+  const settingsStatus = document.createElement("p");
+  settingsStatus.className = "guide-settings-status";
+  settingsStatus.setAttribute("role", "status");
+  settingsView.append(settingsKicker, settingsHint, settingsList, addQuestion, settingsActions, settingsStatus);
+
+  panel.append(head, log, settingsView, chips, form, note);
 
   const launcher = document.createElement("button");
   launcher.type = "button";
@@ -805,10 +847,22 @@ if (contactForm) {
     quiz.textContent = "Reader quiz";
     dock.appendChild(quiz);
   }
-  dock.appendChild(launcher);
-
-  root.append(panel, dock);
+  root.appendChild(panel);
   document.body.appendChild(root);
+  document.body.appendChild(launcher);
+  const dockMount = document.querySelector("[data-guide-dock]");
+  const footerBar = document.querySelector(".footer-pro-bottom-inner");
+  if (dock.childElementCount) {
+    if (dockMount) {
+      dockMount.replaceWith(dock);
+    } else if (footerBar) {
+      const write = footerBar.querySelector(".footer-write");
+      if (write) footerBar.insertBefore(dock, write);
+      else footerBar.appendChild(dock);
+    }
+  } else if (dockMount) {
+    dockMount.remove();
+  }
 
   let turn = 0;
   let lastFocus = null;
@@ -977,52 +1031,221 @@ if (contactForm) {
     return answer;
   }
 
-  function ask(text) {
-    const cleaned = text.trim();
-    if (!cleaned) {
+  const defaultQuestions = welcome.chips.slice();
+  const questionStore = "reading-guide-questions";
+
+  function readStoredQuestions() {
+    try {
+      const raw = window.localStorage.getItem(questionStore);
+      if (!raw) {
+        return null;
+      }
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) {
+        return null;
+      }
+      const cleaned = parsed.map((item) => String(item).trim()).filter(Boolean).slice(0, 8);
+      return cleaned.length ? cleaned : null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  let questions = readStoredQuestions() || defaultQuestions.slice();
+  welcome.chips = questions.slice();
+  let questionAt = 0;
+  let started = false;
+  let settingsOpen = false;
+
+  function wait(ms) {
+    return prefersReducedMotion() ? 0 : ms;
+  }
+
+  function showTyping() {
+    const pending = document.createElement("p");
+    pending.className = "guide-msg guide-msg--bot guide-msg--typing";
+    pending.textContent = "···";
+    log.appendChild(pending);
+    log.scrollTop = log.scrollHeight;
+    return pending;
+  }
+
+  function writeQuestion() {
+    log.replaceChildren();
+    if (questionAt >= questions.length) {
       return;
     }
-    const mine = ++turn;
-    addMessage("user", cleaned);
-    const pending = document.createElement("p");
-    pending.className = "guide-msg guide-msg--bot";
-    pending.textContent = "Looking through the site…";
-    log.appendChild(pending);
+    const text = questions[questionAt];
+    const pending = showTyping();
     window.setTimeout(() => {
-      if (mine !== turn) {
+      if (!pending.isConnected) {
         return;
       }
       pending.remove();
-      const answer = resolve(cleaned);
-      addMessage("bot", answer);
-      renderChips(answer.chips);
-    }, prefersReducedMotion() ? 0 : 180);
+      log.replaceChildren();
+      addMessage("bot", { paragraphs: [text], links: [] });
+      input.focus();
+    }, wait(650));
+  }
+
+  function ask(text) {
+    const cleaned = text.trim();
+    if (!cleaned || questionAt >= questions.length) {
+      return;
+    }
+    questionAt += 1;
+    writeQuestion();
+  }
+
+  function questionField(value) {
+    const row = document.createElement("div");
+    row.className = "guide-settings-row";
+    const field = document.createElement("input");
+    field.type = "text";
+    field.maxLength = 160;
+    field.value = value;
+    field.placeholder = "Question";
+    field.setAttribute("aria-label", "Question");
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "guide-settings-remove";
+    remove.setAttribute("aria-label", "Remove question");
+    remove.textContent = "×";
+    remove.addEventListener("click", () => {
+      if (settingsList.children.length <= 1) {
+        field.value = "";
+        field.focus();
+        return;
+      }
+      row.remove();
+    });
+    row.append(field, remove);
+    return row;
+  }
+
+  function renderQuestionFields(list) {
+    settingsList.replaceChildren();
+    (list.length ? list : [""]).forEach((text) => {
+      settingsList.appendChild(questionField(text));
+    });
+  }
+
+  function collectQuestions() {
+    return Array.from(settingsList.querySelectorAll("input"))
+      .map((field) => field.value.trim())
+      .filter(Boolean)
+      .slice(0, 8);
+  }
+
+  function applyQuestions(list) {
+    questions = list.slice();
+    welcome.chips = questions.slice();
+    questionAt = 0;
+    started = true;
+    writeQuestion();
+  }
+
+  function setSettings(open) {
+    settingsOpen = open;
+    settingsView.hidden = !open;
+    log.hidden = open;
+    form.hidden = open;
+    settingsBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    settingsStatus.textContent = "";
+    if (open) {
+      renderQuestionFields(questions);
+      const first = settingsList.querySelector("input");
+      if (first) {
+        first.focus();
+      }
+    } else {
+      input.focus();
+    }
   }
 
   function setOpen(open) {
     panel.hidden = !open;
+    root.classList.toggle("is-open", open);
     launcher.setAttribute("aria-expanded", open ? "true" : "false");
     if (open) {
       lastFocus = document.activeElement;
-      input.focus();
-    } else if (lastFocus && typeof lastFocus.focus === "function") {
-      lastFocus.focus();
+      if (!started) {
+        started = true;
+        writeQuestion();
+      }
+    } else {
+      if (settingsOpen) {
+        settingsOpen = false;
+        settingsView.hidden = true;
+        log.hidden = false;
+        form.hidden = false;
+        settingsBtn.setAttribute("aria-expanded", "false");
+      }
+      if (lastFocus && typeof lastFocus.focus === "function") {
+        lastFocus.focus();
+      }
     }
   }
 
   launcher.addEventListener("click", () => {
-    const open = panel.hidden;
-    setOpen(open);
-    if (open && !log.childElementCount) {
-      addMessage("bot", welcome);
-      renderChips(welcome.chips);
-    }
+    setOpen(panel.hidden);
   });
 
-  close.addEventListener("click", () => setOpen(false));
+  settingsBtn.addEventListener("click", () => setSettings(!settingsOpen));
+
+  addQuestion.addEventListener("click", () => {
+    if (settingsList.children.length >= 8) {
+      settingsStatus.textContent = "Eight questions is the limit.";
+      return;
+    }
+    const row = questionField("");
+    settingsList.appendChild(row);
+    row.querySelector("input").focus();
+    settingsList.scrollTop = settingsList.scrollHeight;
+  });
+
+  saveQuestionsBtn.addEventListener("click", () => {
+    const next = collectQuestions();
+    if (!next.length) {
+      settingsStatus.textContent = "Add at least one question.";
+      return;
+    }
+    try {
+      window.localStorage.setItem(questionStore, JSON.stringify(next));
+    } catch (error) {
+      settingsStatus.textContent = "Could not save on this browser.";
+      return;
+    }
+    applyQuestions(next);
+    setSettings(false);
+  });
+
+  resetQuestionsBtn.addEventListener("click", () => {
+    try {
+      window.localStorage.removeItem(questionStore);
+    } catch (error) {
+      /* keep the default list either way */
+    }
+    applyQuestions(defaultQuestions.slice());
+    setSettings(false);
+  });
+
+  close.addEventListener("click", () => {
+    setSettings(false);
+    setOpen(false);
+  });
+  document.addEventListener("click", (event) => {
+    if (panel.hidden) return;
+    if (panel.contains(event.target) || launcher.contains(event.target)) return;
+    setOpen(false);
+  });
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !panel.hidden) {
+      if (settingsOpen) {
+        setSettings(false);
+        return;
+      }
       setOpen(false);
     }
   });
@@ -1150,4 +1373,98 @@ if (contactForm) {
 
   openFromHash();
   window.addEventListener("hashchange", openFromHash);
+})();
+
+(function initCoverStage() {
+  const root = document.querySelector("[data-cover-stage]");
+  if (!root) {
+    return;
+  }
+  const figures = [...root.querySelectorAll(".cover-stage__visual figure")];
+  const stories = [...root.querySelectorAll(".cover-stage__stories article")];
+  const now = root.querySelector("[data-cover-now]");
+  const total = root.querySelector("[data-cover-total]");
+  const pauseBtn = root.querySelector("[data-cover-pause]");
+  const count = figures.length;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const wait = 5200;
+  let index = 0;
+  let timer = 0;
+  let paused = reduce;
+
+  if (total) {
+    total.textContent = "/ " + String(count).padStart(2, "0");
+  }
+
+  const show = (next) => {
+    index = (next + count) % count;
+    figures.forEach((figure, i) => {
+      const on = i === index;
+      figure.classList.toggle("is-on", on);
+      figure.toggleAttribute("aria-hidden", !on);
+    });
+    stories.forEach((story, i) => {
+      const on = i === index;
+      story.classList.toggle("is-on", on);
+      story.toggleAttribute("aria-hidden", !on);
+      if (on) story.removeAttribute("inert");
+      else story.setAttribute("inert", "");
+    });
+    if (now) {
+      now.textContent = String(index + 1).padStart(2, "0");
+    }
+    const meter = root.querySelector(".cover-stage__meter span");
+    if (meter) {
+      meter.style.animation = "none";
+      void meter.offsetWidth;
+      meter.style.animation = "";
+    }
+  };
+
+  const queue = () => {
+    window.clearTimeout(timer);
+    if (paused || document.hidden) {
+      return;
+    }
+    timer = window.setTimeout(() => {
+      show(index + 1);
+      queue();
+    }, wait);
+  };
+
+  const setPaused = (value) => {
+    paused = value;
+    root.classList.toggle("is-paused", paused);
+    root.classList.toggle("is-running", !paused);
+    if (pauseBtn) {
+      pauseBtn.setAttribute("aria-pressed", paused ? "true" : "false");
+      pauseBtn.setAttribute("aria-label", paused ? "Play" : "Pause");
+      pauseBtn.classList.toggle("is-play", paused);
+    }
+    if (paused) {
+      window.clearTimeout(timer);
+    } else {
+      queue();
+    }
+  };
+
+  root.querySelector("[data-cover-prev]")?.addEventListener("click", () => {
+    show(index - 1);
+    queue();
+  });
+  root.querySelector("[data-cover-next]")?.addEventListener("click", () => {
+    show(index + 1);
+    queue();
+  });
+  pauseBtn?.addEventListener("click", () => setPaused(!paused));
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      window.clearTimeout(timer);
+    } else if (!paused) {
+      queue();
+    }
+  });
+
+  show(0);
+  setPaused(paused);
 })();

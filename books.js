@@ -2,6 +2,7 @@
    Put the cover file in assets/, then set cover to that path.
    status: "In print" or "Forthcoming"
    href: a detail page, or "contact.html" when the book has no page yet.
+   buy: a retailer URL. When set, the shelf shows a purchase button.
    featured: true opens that book first. Leave it on one volume.
    Order in this list is the order on the shelf.
 
@@ -11,7 +12,7 @@
      subtitle: "Optional line under the title",
      edition: "First edition",
      year: "2027",
-     author: "Mark Steffen",
+     author: "Mark H Steffen",
      status: "Forthcoming",
      summary: "One or two sentences a reader can use.",
      href: "contact.html",
@@ -27,13 +28,15 @@ const BOOKS = [
     subtitle: "The Purpose of Life",
     edition: "Revised edition",
     year: "2026",
-    author: "Mark Steffen",
+    author: "Mark H Steffen",
     status: "In print",
     summary:
       "Heaven, America, and the purpose of life, held in one constitutional and theological argument across fourteen chapters.",
     href: "book.html",
     cta: "Inside the book",
-    cover: "assets/constitution-standing.webp",
+    buy: "https://a.co/d/0iWIUDML",
+    buyLabel: "Buy on Amazon",
+    cover: "assets/constitution-standing.webp?v=3",
     featured: true
   },
   {
@@ -42,13 +45,13 @@ const BOOKS = [
     subtitle: "A companion volume",
     edition: "Author edition",
     year: "2026",
-    author: "Mark Steffen",
+    author: "Mark H Steffen",
     status: "In print",
     summary:
       "A companion on how to live and how to meet death, written to be read with The Constitution of God.",
     href: "contact.html",
     cta: "Request a copy",
-    cover: "assets/guidebook-standing.webp",
+    cover: "assets/guidebook-standing.webp?v=3",
     featured: false
   }
 ];
@@ -222,8 +225,12 @@ function buildStage(book) {
 
   const actions = document.createElement("div");
   actions.className = "books-stage__actions";
-  actions.append(actionLink(book.href || "contact.html", book.cta || "Request a copy", "btn btn-primary"));
-  if ((book.href || "contact.html") !== "contact.html") {
+  if (book.buy) {
+    actions.append(actionLink(book.buy, book.buyLabel || "Buy the book", "btn btn-primary"));
+  }
+  const detailClass = book.buy ? "btn btn-secondary" : "btn btn-primary";
+  actions.append(actionLink(book.href || "contact.html", book.cta || "Request a copy", detailClass));
+  if (!book.buy && (book.href || "contact.html") !== "contact.html") {
     actions.append(actionLink("contact.html", "Request a copy", "btn btn-secondary"));
   }
   copy.append(actions);
@@ -288,6 +295,10 @@ function actionLink(href, label, className) {
   link.className = className;
   link.href = href;
   link.textContent = label;
+  if (/^https?:/i.test(href)) {
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+  }
   return link;
 }
 
@@ -304,11 +315,15 @@ function writeBookSchema(books) {
     "@graph": books.map((book) => ({
       "@type": "Book",
       name: book.title,
-      author: { "@type": "Person", name: book.author || "Mark Steffen" },
+      author: { "@type": "Person", name: book.author || "Mark H Steffen" },
       bookEdition: book.edition || undefined,
       datePublished: book.year || undefined,
       image: book.cover,
       description: book.summary || undefined,
+      url: book.buy || undefined,
+      offers: book.buy
+        ? { "@type": "Offer", url: book.buy, availability: "https://schema.org/InStock" }
+        : undefined,
       inLanguage: "en-US"
     }))
   });

@@ -546,7 +546,7 @@ if (contactForm) {
       title: "The book",
       keywords: ["what is this book", "what is the book", "constitution of god", "the manuscript", "what is it about", "central argument", "three pillars", "absolute faith", "absolute love", "absolute obedience"],
       paragraphs: [
-        "The Constitution of God is Mark Steffen’s fourteen-chapter manuscript. It holds one argument: divine constitutional order, the story of sin and restoration, and the purpose of life read alongside America’s founding ideals.",
+        "The Constitution of God is Mark H Steffen’s fourteen-chapter manuscript. It holds one argument: divine constitutional order, the story of sin and restoration, and the purpose of life read alongside America’s founding ideals.",
         "The site names three commitments with the book: absolute faith, absolute love, and absolute obedience.",
       ],
       links: [
@@ -651,9 +651,9 @@ if (contactForm) {
     },
     {
       title: "Author",
-      keywords: ["mark steffen", "the author", "who wrote", "biography", "about the author", "who is mark"],
+      keywords: ["mark steffen", "mark h steffen", "the author", "who wrote", "biography", "about the author", "who is mark"],
       paragraphs: [
-        "Mark Steffen is the author of The Constitution of God. The public biography on this site describes the arc of the manuscript: divine constitutional order, moral freedom, restoration in Christ, and purpose in personal life and national destiny.",
+        "Mark H Steffen is the author of The Constitution of God. The public biography on this site describes the arc of the manuscript: divine constitutional order, moral freedom, restoration in Christ, and purpose in personal life and national destiny.",
         "Interviews and speaking requests go through the contact form.",
       ],
       links: [
@@ -672,15 +672,18 @@ if (contactForm) {
         ["contact.html", "Contact form"],
         ["contact.html#newsletter", "Newsletter"],
       ],
-      chips: ["Who is Mark Steffen?", "Where should I start?"],
+      chips: ["Who is Mark H Steffen?", "Where should I start?"],
     },
     {
       title: "Availability",
       keywords: ["buy", "purchase", "order", "amazon", "kindle", "price", "bookstore", "where can i get", "where to buy", "preorder"],
       paragraphs: [
-        "This site does not list a retailer or a price. For availability, use the contact form or the newsletter on the contact page.",
+        "The Constitution of God is available to purchase on Amazon. Signed sets and books for a study group can still be requested through the contact form.",
       ],
-      links: [["contact.html", "Ask about availability"]],
+      links: [
+        ["https://a.co/d/0iWIUDML", "Buy on Amazon"],
+        ["contact.html", "Request a signed copy"],
+      ],
       chips: ["What is the book about?", "Where should I start?"],
     },
     {
@@ -696,7 +699,7 @@ if (contactForm) {
       title: "Guide",
       keywords: ["who are you", "what are you", "are you ai", "are you mark", "reading guide", "chatbot", "are you a bot"],
       paragraphs: [
-        "I’m the reading guide on this website. I answer from these public pages: the book, the chapters, the quiz, the reviews, and the journal. I am not Mark Steffen, and I don’t describe manuscript pages that are not published here.",
+        "I’m the reading guide on this website. I answer from these public pages: the book, the chapters, the quiz, the reviews, and the journal. I am not Mark H Steffen, and I don’t describe manuscript pages that are not published here.",
       ],
       links: [["book.html", "Start with the book"]],
       chips: ["What is the book about?", "Where should I start?"],
@@ -896,6 +899,10 @@ if (contactForm) {
           const anchor = document.createElement("a");
           anchor.href = link[0];
           anchor.textContent = link[1];
+          if (/^https?:/i.test(link[0])) {
+            anchor.target = "_blank";
+            anchor.rel = "noopener noreferrer";
+          }
           list.appendChild(anchor);
         });
         item.appendChild(list);

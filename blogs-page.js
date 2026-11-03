@@ -4,8 +4,10 @@
   if (!grid || !window.SiteJournal) return;
 
   const perPage = 6;
+  const pageCount = 5;
   let cards = [];
-  let pages = 1;
+  let pages = pageCount;
+  let emptyNote = null;
 
   const pageFromLocation = () => {
     const value = Number(new URLSearchParams(window.location.search).get("page"));
@@ -28,12 +30,17 @@
       card.hidden = index < start || index >= start + perPage;
     });
 
-    if (!pager) return;
-    if (pages < 2) {
-      pager.hidden = true;
-      pager.innerHTML = "";
-      return;
+    const visible = cards.filter((card) => !card.hidden).length;
+    if (!emptyNote) {
+      emptyNote = document.createElement("p");
+      emptyNote.className = "page-lead";
+      emptyNote.dataset.blogEmpty = "";
+      emptyNote.textContent = "No blogs on this page yet.";
+      grid.after(emptyNote);
     }
+    emptyNote.hidden = visible > 0;
+
+    if (!pager) return;
 
     const numbers = [];
     for (let index = 1; index <= pages; index += 1) {
@@ -80,7 +87,7 @@
     .then((posts) => {
       grid.replaceChildren(...posts.map(window.SiteJournal.card));
       cards = [...grid.querySelectorAll(":scope > .journal-card")];
-      pages = Math.max(1, Math.ceil(cards.length / perPage));
+      pages = Math.max(pageCount, Math.ceil(cards.length / perPage));
       show(pageFromLocation(), false);
     })
     .catch(() => {

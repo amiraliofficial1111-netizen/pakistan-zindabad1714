@@ -29,6 +29,11 @@
       }
       const home = blogPost ? "blogs.html" : "journal.html";
       const homeLabel = blogPost ? "Back to blogs" : "Back to the journal";
+      const sectionLink = document.querySelector('.crumb a[href="journal.html"]');
+      if (blogPost && sectionLink) {
+        sectionLink.href = "blogs.html";
+        sectionLink.textContent = "Blogs";
+      }
       document.title = `${post.title} | Mark H Steffen`;
       title.textContent = post.title;
       excerpt.textContent = post.excerpt;

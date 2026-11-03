@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "slug": "heaven-on-earth",
+      "title": "Was Heaven Meant to Exist on Earth? Uncovering God’s Original Purpose for Humanity",
+      "date": "2026-10-30",
+      "excerpt": "What if heaven was never meant to be a distant place we could only reach after death? What if God's original plan was to create a world where heaven and earth existed together, and humanity could experience divine…",
+      "href": "article-heaven-on-earth.html",
+      "body": ""
+    },
+    {
+      "slug": "garden-of-eden",
+      "title": "The Untold Story of Adam, Eve, and Lucifer: What Really Went Wrong in the Garden of Eden?",
+      "date": "2026-10-23",
+      "excerpt": "The story of Adam and Eve is one of the most familiar accounts in the Bible. Almost everyone knows about the forbidden fruit, the serpent, and humanity's fall from paradise. But what if there was more to the story…",
+      "href": "article-garden-of-eden.html",
+      "body": ""
+    },
+    {
+      "slug": "divine-blueprint",
+      "title": "Did God Have a Constitution Before America? The Divine Blueprint That Could Change Everything",
+      "date": "2026-10-16",
+      "excerpt": "When we hear the word constitution, we usually think of governments, laws, and the principles that protect a nation's freedom. The United States Constitution, for example, was created to establish a system of…",
+      "href": "article-divine-blueprint.html",
+      "body": ""
+    }
+  ]
+}

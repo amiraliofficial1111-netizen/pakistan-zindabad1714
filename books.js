@@ -21,7 +21,7 @@
      featured: false
    }
 */
-const BOOKS = [
+const BOOKS_FALLBACK = [
   {
     id: "constitution-of-god",
     title: "The Constitution of God",
@@ -56,31 +56,67 @@ const BOOKS = [
   }
 ];
 
-(function initBookCatalog() {
-  const mounts = document.querySelectorAll("[data-books-mount]");
-  if (!mounts.length) {
-    return;
-  }
+let BOOKS = BOOKS_FALLBACK.slice();
 
-  const books = BOOKS.filter((book) => {
+function resolveBooks(source) {
+  const list = Array.isArray(source) ? source : BOOKS_FALLBACK;
+  return list.filter((book) => {
     if (!book || !book.id || !book.title || !book.cover) {
       console.warn("Skipped a book entry. id, title, and cover are required.", book);
       return false;
     }
     return true;
   });
+}
 
-  const lead = catalogLead(books);
+function paintBookCatalog(source) {
+  const mounts = document.querySelectorAll("[data-books-mount]");
+  if (!mounts.length) return;
+  BOOKS = resolveBooks(source);
+  const lead = catalogLead(BOOKS);
   document.querySelectorAll("[data-books-lead]").forEach((node) => {
-    node.textContent = lead;
+    if (!node.hasAttribute("data-page-lead") || !node.dataset.cmsLocked) node.textContent = lead;
+  });
+  mounts.forEach((mount) => {
+    renderCatalog(mount, BOOKS);
+    if (mount.hasAttribute("data-books-schema")) writeBookSchema(BOOKS);
+  });
+}
+
+(function initBookCatalog() {
+  const mounts = document.querySelectorAll("[data-books-mount]");
+  if (!mounts.length) return;
+
+  function fromSite(site) {
+    if (site && Array.isArray(site.books)) paintBookCatalog(site.books);
+  }
+
+  paintBookCatalog(BOOKS_FALLBACK);
+
+  fetch(`site-content.json?v=${Date.now()}`)
+    .then((response) => (response.ok ? response.json() : null))
+    .then((site) => fromSite(site))
+    .catch(() => {});
+
+  if (window.SiteContent && Array.isArray(window.SiteContent.books)) {
+    fromSite(window.SiteContent);
+  }
+
+  document.addEventListener("sitecontent:ready", (event) => {
+    fromSite(event.detail || window.SiteContent);
   });
 
-  mounts.forEach((mount) => {
-    renderCatalog(mount, books);
-    if (mount.hasAttribute("data-books-schema")) {
-      writeBookSchema(books);
+  // Catch late SiteContent assignment if the ready event was missed.
+  let tries = 0;
+  const timer = window.setInterval(() => {
+    tries += 1;
+    if (window.SiteContent && Array.isArray(window.SiteContent.books)) {
+      fromSite(window.SiteContent);
+      window.clearInterval(timer);
+    } else if (tries > 40) {
+      window.clearInterval(timer);
     }
-  });
+  }, 100);
 })();
 
 function catalogLead(books) {

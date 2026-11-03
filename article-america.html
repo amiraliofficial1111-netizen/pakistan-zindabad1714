@@ -17,7 +17,7 @@
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Outfit:wght@300;400;500;600&display=swap" /></noscript>
-    <link rel="stylesheet" href="styles.css?v=62" />
+    <link rel="stylesheet" href="styles.css?v=91" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="favicon.svg" />
     <meta name="theme-color" content="#07091a" />
@@ -75,7 +75,7 @@
     <div class="site-loader" id="siteLoader"><div class="loader-orb"></div><p>Loading</p></div>
     <header class="site-header" role="banner">
       <div class="container nav-wrap">
-        <a href="index.html" class="brand" aria-label="The Constitution of God, home"><span class="brand-text">The Constitution of God</span></a>
+        <a href="index.html" class="brand" aria-label="The Constitution of God, home"><span class="brand-text" data-cms="global.header.brand">The Constitution of God</span></a>
         <nav class="nav-links" id="navLinks" role="navigation" aria-label="Primary">
           <a href="index.html">Home</a>
           <a href="book.html">Book</a>
@@ -85,10 +85,10 @@
           <a href="reviews.html">Reviews</a>
           <a href="author.html">Author</a>
           <a href="contact.html">Contact</a>
-        <a class="nav-request" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer">Buy the book</a>
+        <a class="nav-request" data-cms-href="global.header.ctaUrl" data-cms="global.header.ctaLabel" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer">Buy the book</a>
         </nav>
         <div class="nav-end">
-          <a class="header-cta" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer">Buy the book</a>
+          <a class="header-cta" data-cms-href="global.header.ctaUrl" data-cms="global.header.ctaLabel" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer">Buy the book</a>
           <button type="button" class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">Menu</button>
         </div>
       </div>
@@ -185,11 +185,11 @@
             <path d="M32 22.1v16.8" />
           </svg></span>
             <span class="footer-mark-copy">
-              <span class="footer-pro-title">The Constitution of God</span>
-              <span class="footer-pro-tagline">Official author site, Mark H Steffen</span>
+              <span class="footer-pro-title" data-cms="global.footer.title">The Constitution of God</span>
+              <span class="footer-pro-tagline" data-cms="global.footer.tagline">Official author site, Mark H Steffen</span>
             </span>
           </a>
-          <p class="footer-pro-desc">A fourteen-chapter theological manuscript connecting divine order, constitutional language, and practical purpose.</p>
+          <p class="footer-pro-desc" data-cms="global.footer.description">A fourteen-chapter theological manuscript connecting divine order, constitutional language, and practical purpose.</p>
           <ul class="footer-marks">
             <li><svg class="footer-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4.5h8v15l-4-2.2-4 2.2v-15Z"/><path d="M8 4.5H6.2A1.2 1.2 0 0 0 5 5.7V18"/></svg><span>14 chapters</span></li>
             <li><svg class="footer-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5.2" width="16" height="14.2" rx="1.4"/><path d="M4 9.4h16M8 3.6v3.2M16 3.6v3.2"/></svg><span>2026 edition</span></li>
@@ -226,11 +226,13 @@
       </div>
       <div class="footer-pro-bottom">
         <div class="container footer-pro-bottom-inner">
-          <p>&copy; 2026 Mark H Steffen. All rights reserved. Official author edition.</p>
-          <a class="footer-write" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer"><svg class="footer-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.2A2.2 2.2 0 0 1 7.2 3H19v16H7.2A2.2 2.2 0 0 0 5 21.2V5.2Z"/><path d="M5 18.8A2.2 2.2 0 0 1 7.2 16.6H19"/></svg><span>Buy the book</span></a>
+          <p><span data-cms="global.footer.copyright">&copy; 2026 Mark H Steffen. All rights reserved. Official author edition.</span></p>
+          <a class="footer-write" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer" data-cms-href="global.footer.ctaUrl"><svg class="footer-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.2A2.2 2.2 0 0 1 7.2 3H19v16H7.2A2.2 2.2 0 0 0 5 21.2V5.2Z"/><path d="M5 18.8A2.2 2.2 0 0 1 7.2 16.6H19"/></svg><span data-cms="global.footer.ctaLabel">Buy the book</span></a>
         </div>
       </div>
     </footer>
+    <script src="music.js?v=5" defer></script>
+    <script src="content.js?v=27" defer></script>
     <script src="script.js?v=26" defer></script>
   </body>
 </html>

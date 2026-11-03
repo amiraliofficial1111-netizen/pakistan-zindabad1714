@@ -1,0 +1,36 @@
+{
+  "posts": [
+    {
+      "slug": "reading-groups",
+      "title": "How to Read These Fourteen Chapters with a Group",
+      "date": "2026-10-06",
+      "excerpt": "Use the paths the book already has. One chapter a week if you mean to finish. Four questions that keep the hour on the argument.",
+      "href": "article-reading-groups.html",
+      "body": ""
+    },
+    {
+      "slug": "heaven-america",
+      "title": "Heaven, America, and One Vocabulary",
+      "date": "2026-09-22",
+      "excerpt": "The last four chapters name a nation inside a creation. The right word for that meeting is echo, and an echo is not an identity.",
+      "href": "article-america.html",
+      "body": ""
+    },
+    {
+      "slug": "second-adam",
+      "title": "Why the Manuscript Turns on a Second Adam",
+      "date": "2026-09-02",
+      "excerpt": "Chapter 6 is the hinge. Restoration in this table of contents is not a mood. It is a line of persons, and it is unfinished.",
+      "href": "article-second-adam.html",
+      "body": ""
+    },
+    {
+      "slug": "divine-order",
+      "title": "What “Divine Constitutional Order” Means in This Book",
+      "date": "2026-08-18",
+      "excerpt": "The manuscript does not open in 1787. It opens with a claim about God, and the later civic chapters are sequels to that claim.",
+      "href": "article-divine-order.html",
+      "body": ""
+    }
+  ]
+}

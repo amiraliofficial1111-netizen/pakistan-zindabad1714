@@ -23,7 +23,7 @@
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Outfit:wght@300;400;500;600&display=swap" /></noscript>
-    <link rel="stylesheet" href="styles.css?v=62" />
+    <link rel="stylesheet" href="styles.css?v=91" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="favicon.svg" />
 
@@ -89,7 +89,7 @@
     <header class="site-header" role="banner">
       <div class="container nav-wrap">
         <a href="index.html" class="brand" aria-label="The Constitution of God, home">
-          <span class="brand-text">The Constitution of God</span>
+          <span class="brand-text" data-cms="global.header.brand">The Constitution of God</span>
         </a>
         <nav class="nav-links" id="navLinks" role="navigation" aria-label="Primary">
           <a href="index.html" class="active">Home</a>
@@ -100,10 +100,10 @@
           <a href="reviews.html">Reviews</a>
           <a href="author.html">Author</a>
           <a href="contact.html">Contact</a>
-        <a class="nav-request" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer">Buy the book</a>
+        <a class="nav-request" data-cms-href="global.header.ctaUrl" data-cms="global.header.ctaLabel" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer">Buy the book</a>
         </nav>
         <div class="nav-end">
-          <a class="header-cta" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer">Buy the book</a>
+          <a class="header-cta" data-cms-href="global.header.ctaUrl" data-cms="global.header.ctaLabel" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer">Buy the book</a>
           <button type="button" class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">Menu</button>
         </div>
       </div>
@@ -118,39 +118,39 @@
             <div class="home-hero-panel__inner">
               <header class="home-hero-head">
                 <span class="home-hero-head__sep" aria-hidden="true"></span>
-                <p class="hero-kicker home-hero-kicker">Official author edition, 2026</p>
+                <p class="hero-kicker home-hero-kicker" data-cms="home.hero.kicker">Official author edition, 2026</p>
                 <span class="home-hero-head__sep" aria-hidden="true"></span>
               </header>
-              <p class="home-hero-author">Mark H Steffen</p>
-              <h1 id="home-hero-title">The Constitution<br><span>of God</span></h1>
-              <p class="home-hero-lead">
+              <p class="home-hero-author" data-cms="home.hero.author">Mark H Steffen</p>
+              <h1 id="home-hero-title" data-page-heading="home">The Constitution<br><span>of God</span></h1>
+              <p class="home-hero-lead" data-page-lead>
                 Heaven, America, and the purpose of life, brought together in one constitutional and theological argument.
               </p>
               <div class="hero-actions home-hero-actions">
-                <a class="btn btn-primary" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.2A2.2 2.2 0 0 1 7.2 3H19v16H7.2A2.2 2.2 0 0 0 5 21.2V5.2Z"/><path d="M5 18.8A2.2 2.2 0 0 1 7.2 16.6H19"/></svg>Buy the book</a>
-                <a class="btn btn-secondary" href="chapters.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.2A2.2 2.2 0 0 1 7.2 3H19v16H7.2A2.2 2.2 0 0 0 5 21.2V5.2Z"/><path d="M5 18.8A2.2 2.2 0 0 1 7.2 16.6H19"/></svg>Read a chapter</a>
-                <a class="btn btn-secondary" href="book.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="m10.2 8.8 5 3.2-5 3.2z" fill="currentColor" stroke="none"/></svg>Inside the book</a>
+                <a class="btn btn-primary" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer" data-cms-text="home.hero.primaryCta.label" data-cms-href="home.hero.primaryCta.href"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.2A2.2 2.2 0 0 1 7.2 3H19v16H7.2A2.2 2.2 0 0 0 5 21.2V5.2Z"/><path d="M5 18.8A2.2 2.2 0 0 1 7.2 16.6H19"/></svg>Buy the book</a>
+                <a class="btn btn-secondary" href="#trailer" data-cms-text="home.hero.secondaryCta.label" data-cms-href="home.hero.secondaryCta.href"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="m10.2 8.8 5 3.2-5 3.2z" fill="currentColor" stroke="none"/></svg>Watch trailer</a>
+                <a class="btn btn-secondary" href="chapters.html" data-cms-text="home.hero.tertiaryCta.label" data-cms-href="home.hero.tertiaryCta.href"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.2A2.2 2.2 0 0 1 7.2 3H19v16H7.2A2.2 2.2 0 0 0 5 21.2V5.2Z"/><path d="M5 18.8A2.2 2.2 0 0 1 7.2 16.6H19"/></svg>Read a chapter</a>
               </div>
               <ul class="home-hero-stats" aria-label="Edition at a glance">
                 <li>
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.2A2.2 2.2 0 0 1 7.2 3H19v16H7.2A2.2 2.2 0 0 0 5 21.2V5.2Z"/></svg>
-                  <span><span class="home-hero-stat-num">14</span><span class="home-hero-stat-label">Chapters</span></span>
+                  <span><span class="home-hero-stat-num" data-cms="home.hero.stats.0.num">14</span><span class="home-hero-stat-label" data-cms="home.hero.stats.0.label">Chapters</span></span>
                 </li>
                 <li>
                   <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8.2v.2M10.2 11.2c.2-1 1-1.6 1.9-1.6 1.1 0 1.8.6 1.8 1.5 0 2.1-3.6 1.6-3.6 3.6M12 17.2v.2"/></svg>
-                  <span><span class="home-hero-stat-num">2026</span><span class="home-hero-stat-label">Copyright edition</span></span>
+                  <span><span class="home-hero-stat-num" data-cms="home.hero.stats.1.num">2026</span><span class="home-hero-stat-label" data-cms="home.hero.stats.1.label">Copyright edition</span></span>
                 </li>
                 <li>
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V10M10 19V5M15 19v-7M20 19V8"/></svg>
-                  <span><span class="home-hero-stat-num">1</span><span class="home-hero-stat-label">Defining volume</span></span>
+                  <span><span class="home-hero-stat-num" data-cms="home.hero.stats.2.num">1</span><span class="home-hero-stat-label" data-cms="home.hero.stats.2.label">Defining volume</span></span>
                 </li>
               </ul>
-              <p class="home-hero-signoff">“Please read this with an open mind.”</p>
+              <p class="home-hero-signoff" data-cms="home.hero.signoff">“Please read this with an open mind.”</p>
             </div>
           </div>
           <div class="hero-image hero-image--book-cutout home-hero-visual">
             <img
-              src="assets/hero-both-books.webp?v=3"
+              src="assets/hero-both-books.webp?v=3" data-cms-src="home.hero.image" data-cms-alt="home.hero.imageAlt"
               alt="A Guidebook for Living and Dying beside The Constitution of God"
               width="1600"
               height="961"
@@ -183,14 +183,118 @@
         </div>
       </section>
 
+      <section class="trailer-scene reveal" id="trailer" aria-labelledby="trailer-title">
+        <div class="container">
+          <header class="section-head text-center trailer-scene__head">
+            <p class="hub-kicker" data-cms="home.trailer.kicker">Official trailer</p>
+            <h2 id="trailer-title" data-cms="home.trailer.heading">See the argument<br><span>before you open the book</span></h2>
+            <p class="section-intro">
+              <span data-cms="home.trailer.intro">A short introduction to Mark H Steffen&rsquo;s Constitution of God, the 2026 author edition.</span>
+            </p>
+          </header>
+          <div class="trailer-stage">
+            <div class="trailer-stage__frame">
+              <div class="trailer-stage__glow" aria-hidden="true"></div>
+              <div class="trailer-stage__screen">
+                <iframe
+                  title="Mark Steffen video trailer for The Constitution of God"
+                  src="https://drive.google.com/file/d/15_eBE4ceGvYafP9aOXT48Xbc0kzSgR7x/preview"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                  loading="lazy"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                ></iframe>
+              </div>
+            </div>
+            <div class="trailer-stage__meta">
+              <p data-cms="home.trailer.meta">Mark Steffen Video Trailer</p>
+              <a
+                class="trailer-stage__link"
+                href="https://drive.google.com/file/d/15_eBE4ceGvYafP9aOXT48Xbc0kzSgR7x/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cms="home.trailer.linkLabel"
+                data-cms-href="home.trailer.linkUrl"
+              >Open full screen</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="audio-sample-scene reveal" id="audiobook-sample" aria-labelledby="audio-sample-title">
+        <div class="container">
+          <div class="audio-sample">
+            <div class="audio-sample__copy">
+              <p class="hub-kicker" data-cms="home.audiobook.kicker">Audiobook sample</p>
+              <h2 id="audio-sample-title" data-cms="home.audiobook.heading">Hear a short piece of the narration</h2>
+              <p>
+                <span data-cms="home.audiobook.body">Mark H Steffen reads from The Constitution of God. Start with the opening credits, listen to the Chapter&nbsp;1 sample, or play a song.</span>
+              </p>
+              <a
+                class="audio-sample__folder"
+                href="https://drive.google.com/drive/folders/1G4HRlRiwmDIvdp4JX-jiL0FsubldyvEo?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cms="home.audiobook.folderLabel"
+                data-cms-href="home.audiobook.folderUrl"
+              >Browse all chapter narrations</a>
+            </div>
+            <div class="audio-sample__player" data-audio-sample>
+              <div class="audio-sample__tracks" role="tablist" aria-label="Sample tracks">
+                <button type="button" class="audio-sample__track is-active" role="tab" aria-selected="true" data-audio-src="assets/audio/opening-credits.mp3" data-audio-label="Opening Credits">
+                  <span class="audio-sample__track-kicker">Sample</span>
+                  <span class="audio-sample__track-title">Opening Credits</span>
+                </button>
+                <button type="button" class="audio-sample__track" role="tab" aria-selected="false" data-audio-src="assets/audio/chapter-01-sample.mp3" data-audio-label="Chapter 1">
+                  <span class="audio-sample__track-kicker">Chapter 01</span>
+                  <span class="audio-sample__track-title">Narration sample</span>
+                </button>
+                <button type="button" class="audio-sample__track" role="tab" aria-selected="false" data-audio-src="assets/audio/bright-pop.mp3" data-audio-label="Bright pop">
+                  <span class="audio-sample__track-kicker">Music</span>
+                  <span class="audio-sample__track-title">Bright pop</span>
+                </button>
+                <button type="button" class="audio-sample__track" role="tab" aria-selected="false" data-audio-src="assets/audio/synth-pop.mp3" data-audio-label="Synth pop">
+                  <span class="audio-sample__track-kicker">Music</span>
+                  <span class="audio-sample__track-title">Synth pop</span>
+                </button>
+                <button type="button" class="audio-sample__track" role="tab" aria-selected="false" data-audio-src="assets/audio/late-night.mp3" data-audio-label="Late night">
+                  <span class="audio-sample__track-kicker">Music</span>
+                  <span class="audio-sample__track-title">Late night</span>
+                </button>
+                <button type="button" class="audio-sample__track" role="tab" aria-selected="false" data-audio-src="assets/audio/night-groove.mp3" data-audio-label="Night groove">
+                  <span class="audio-sample__track-kicker">Music</span>
+                  <span class="audio-sample__track-title">Night groove</span>
+                </button>
+                <button type="button" class="audio-sample__track" role="tab" aria-selected="false" data-audio-src="assets/audio/big-bridge.mp3" data-audio-label="Big bridge">
+                  <span class="audio-sample__track-kicker">Music</span>
+                  <span class="audio-sample__track-title">Big bridge</span>
+                </button>
+              </div>
+              <div class="audio-sample__deck">
+                <p class="audio-sample__now" data-audio-now>Now playing: Opening Credits</p>
+                <audio
+                  class="audio-sample__element"
+                  controls
+                  preload="metadata"
+                  controlsList="nodownload"
+                  src="assets/audio/opening-credits.mp3"
+                >
+                  Your browser does not support the audio player.
+                </audio>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="edition-band reveal" id="edition" aria-labelledby="edition-title">
         <div class="container edition-band__grid">
           <div>
-            <p class="hub-kicker">The 2026 author edition</p>
-            <h2 id="edition-title">A volume meant to be owned, not skimmed.</h2>
+            <p class="hub-kicker" data-cms="home.edition.kicker">The 2026 author edition</p>
+            <h2 id="edition-title" data-cms="home.edition.heading">A volume meant to be owned, not skimmed.</h2>
             <p>
-              Fourteen chapters, bound as one argument. The Constitution of God is available on Amazon. Signed sets and
-              books for a study group are still arranged with Mark H Steffen.
+              <span data-cms="home.edition.body">Fourteen chapters, bound as one argument. The Constitution of God is available on Amazon. Signed sets and
+              books for a study group are still arranged with Mark H Steffen.</span>
             </p>
           </div>
           <ul class="edition-points">
@@ -199,8 +303,8 @@
             <li><span>03</span> Available to purchase now</li>
           </ul>
           <div class="edition-actions">
-            <a class="btn btn-primary" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer">Buy on Amazon</a>
-            <a class="btn btn-secondary" href="contact.html">Request a signed copy</a>
+            <a class="btn btn-primary" data-cms-text="home.edition.primaryCta.label" data-cms-href="home.edition.primaryCta.href" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer">Buy on Amazon</a>
+            <a class="btn btn-secondary" data-cms-text="home.edition.secondaryCta.label" data-cms-href="home.edition.secondaryCta.href" href="contact.html">Request a signed copy</a>
             <div data-guide-dock></div>
           </div>
         </div>
@@ -212,15 +316,15 @@
           <div class="principles principles--icons">
             <div class="principle">
               <span class="principle-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3.4 1.5 4.4 4.6.2-3.6 2.9 1.2 4.5L12 13.2 8.3 15.4l1.2-4.5L5.9 8l4.6-.2z"/></svg></span>
-              <span>Absolute Faith</span>
+              <span data-cms="home.principles.0">Absolute Faith</span>
             </div>
             <div class="principle principle--center">
               <span class="principle-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 19s-6.2-3.7-6.2-8.1A3.4 3.4 0 0 1 12 8.2a3.4 3.4 0 0 1 6.2 2.7C18.2 15.3 12 19 12 19z"/></svg></span>
-              <span>Absolute Love</span>
+              <span data-cms="home.principles.1">Absolute Love</span>
             </div>
             <div class="principle">
               <span class="principle-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5 19 6.2v5.3c0 4.2-2.8 7.2-7 8.9-4.2-1.7-7-4.7-7-8.9V6.2z"/></svg></span>
-              <span>Absolute Obedience</span>
+              <span data-cms="home.principles.2">Absolute Obedience</span>
             </div>
           </div>
         </div>
@@ -229,30 +333,30 @@
       <section id="home-hub" class="home-band reveal" aria-labelledby="home-hub-title">
         <div class="container">
           <header class="section-head text-center">
-            <h2 id="home-hub-title">Start with the question<br><span>you brought</span></h2>
+            <h2 id="home-hub-title" data-cms="home.hub.heading">Start with the question<br><span>you brought</span></h2>
             <p class="section-intro">
-              One manuscript, three ways to enter it, and a journal that stays with the argument after you close the chapter.
+              <span data-cms="home.hub.intro">One manuscript, three ways to enter it, and a journal that stays with the argument after you close the chapter.</span>
             </p>
           </header>
           <div class="hub-grid motion-stagger">
             <article class="hub-card">
               <div class="hub-card__art hub-card__art--quiz" role="img" aria-label=""></div>
               <p class="hub-kicker">Quiz</p>
-              <h3>Which book should I read?</h3>
+              <h3 data-cms="home.hub.cards.0.title">Which book should I read?</h3>
               <p>Six questions name this book and the chapter that fits you: foundations, the Second Adam, the nation, or the full arc.</p>
               <a class="btn btn-primary" href="quiz.html">Start the quiz</a>
             </article>
             <article class="hub-card">
               <div class="hub-card__art hub-card__art--reviews" role="img" aria-label=""></div>
               <p class="hub-kicker">Reviews</p>
-              <h3>Read it the way a critic would</h3>
+              <h3 data-cms="home.hub.cards.1.title">Read it the way a critic would</h3>
               <p>Three editorial reviews of the architecture: the fourteen-chapter arc, the civic echo, and how a group can use the book.</p>
               <a class="btn btn-secondary" href="reviews.html">Read the reviews</a>
             </article>
             <article class="hub-card">
               <div class="hub-card__art hub-card__art--journal" role="img" aria-label=""><span class="hub-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14.2 4.8l5 5L8.6 20.4H3.6v-5z"/><path d="M12.6 6.4l5 5"/></svg></span></div>
               <p class="hub-kicker">Journal</p>
-              <h3>Essays from the desk</h3>
+              <h3 data-cms="home.hub.cards.2.title">Essays from the desk</h3>
               <p>Divine order, the Second Adam, Heaven and America, and a practical way to read the fourteen chapters with other people.</p>
               <a class="btn btn-secondary" href="journal.html">Open the journal</a>
             </article>
@@ -265,18 +369,18 @@
       <section id="home-snapshot" class="snapshot-scene reveal" aria-labelledby="home-snapshot-title">
         <div class="container">
           <header class="section-head text-center snapshot-head">
-            <h2 id="home-snapshot-title">Edition <span>snapshot</span></h2>
-            <p class="snapshot-kicker">Quick details at a glance</p>
+            <h2 id="home-snapshot-title" data-cms="home.snapshot.heading">Edition <span>snapshot</span></h2>
+            <p class="snapshot-kicker" data-cms="home.snapshot.kicker">Quick details at a glance</p>
           </header>
           <div class="snapshot-grid motion-stagger">
             <article class="snapshot-quote">
-              <p class="snapshot-badge">The book</p>
+              <p class="snapshot-badge"><span data-cms="home.snapshot.quoteBadge">The book</span></p>
               <blockquote>
-                <p>&ldquo;Read with an open mind. This book is a constitutional and theological reflection on creation, purpose, and destiny.&rdquo;</p>
+                <p>&ldquo;<span data-cms="home.snapshot.quote">Read with an open mind. This book is a constitutional and theological reflection on creation, purpose, and destiny.</span>&rdquo;</p>
               </blockquote>
               <p class="snapshot-by">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.1"/><path d="M5.5 19.2c.8-3 3.1-4.4 6.5-4.4s5.7 1.4 6.5 4.4"/></svg>
-                Mark H Steffen
+                <span data-cms="home.snapshot.quoteBy">Mark H Steffen</span>
               </p>
             </article>
             <div class="snapshot-facts">
@@ -316,10 +420,10 @@
       <section id="home-pillars" class="pillars-scene reveal" aria-labelledby="home-pillars-title">
         <div class="container">
           <header class="section-head text-center pillars-head">
-            <h2 id="home-pillars-title">What This Manuscript<br><span>Reveals</span></h2>
+            <h2 id="home-pillars-title" data-cms="home.pillars.heading">What This Manuscript<br><span>Reveals</span></h2>
             <p class="section-intro">
-              Three pillars frame the argument: God’s constitutional order, the long drama of sin and restoration,
-              and the convergence of Heaven’s purpose with America’s founding ideals.
+              <span data-cms="home.pillars.intro">Three pillars frame the argument: God’s constitutional order, the long drama of sin and restoration,
+              and the convergence of Heaven’s purpose with America’s founding ideals.</span>
             </p>
           </header>
           <div class="pillar-grid motion-stagger">
@@ -327,7 +431,7 @@
               <div class="pillar-card__art pillar-card__art--order">
                 <span class="pillar-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19.2h16"/><path d="M6.2 19.2V9.4h11.6v9.8"/><path d="M4.4 9.4h15.2"/><path d="M12 4.2 19.2 9.4H4.8z"/><path d="M9.2 19.2v-4.2h5.6v4.2"/></svg></span>
               </div>
-              <h3>Divine Constitutional Order</h3>
+              <h3 data-cms="home.pillars.cards.0.title">Divine Constitutional Order</h3>
               <p>How God’s original constitution shapes creation, covenant, and the moral architecture of human freedom.</p>
               <a class="pillar-link" href="chapters.html#chapter-01">Read the chapter <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
             </article>
@@ -335,7 +439,7 @@
               <div class="pillar-card__art pillar-card__art--restore">
                 <span class="pillar-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4.2v15.6"/><path d="M7.2 9.2h9.6"/></svg></span>
               </div>
-              <h3>Sin, Lineage &amp; Restoration</h3>
+              <h3 data-cms="home.pillars.cards.1.title">Sin, Lineage &amp; Restoration</h3>
               <p>From the origin of sin through the Second Adam to the lineage chain and the hope of return and renewal.</p>
               <a class="pillar-link" href="chapters.html#chapter-06">Read the chapter <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
             </article>
@@ -343,7 +447,7 @@
               <div class="pillar-card__art pillar-card__art--america">
                 <span class="pillar-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M1.8 13.2C5 9.8 8.4 8.8 12 8.8s7 1 10.2 4.4c-2.6-.6-5 .2-6.8 1.8 1.2 1.5 1.6 3.1 1.1 4.6-1.7-1.5-3.4-2.2-4.5-2.2s-2.8.7-4.5 2.2c-.5-1.5-.1-3.1 1.1-4.6-1.8-1.6-4.2-2.4-6.8-1.8z"/></svg></span>
               </div>
-              <h3>Heaven, America &amp; Purpose</h3>
+              <h3 data-cms="home.pillars.cards.2.title">Heaven, America &amp; Purpose</h3>
               <p>The makeup of creation, the American constitution as a civic echo, and the purpose of life united with the desire of a nation.</p>
               <a class="pillar-link" href="chapters.html#chapter-14">Read the chapter <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
             </article>
@@ -356,9 +460,9 @@
         <div class="container">
           <figure class="author-message">
             <blockquote>
-              <p>&ldquo;Please read this with an open<br>mind.&rdquo;</p>
+              <p>&ldquo;<span data-cms="home.quote.text">Please read this with an open mind.</span>&rdquo;</p>
             </blockquote>
-            <figcaption><cite>Mark H Steffen, author</cite></figcaption>
+            <figcaption><cite><span data-cms="home.quote.cite">Mark H Steffen, author</span></cite></figcaption>
           </figure>
         </div>
       </section>
@@ -367,28 +471,28 @@
       <section id="home-journey" class="journey-scene reveal" aria-labelledby="home-journey-title">
         <div class="container">
           <header class="section-head text-center journey-head">
-            <h2 id="home-journey-title">From Crisis of Meaning<br><span>to Clarity of Purpose</span></h2>
+            <h2 id="home-journey-title" data-cms="home.journey.heading">From Crisis of Meaning<br><span>to Clarity of Purpose</span></h2>
             <p class="section-intro">
-              Many readers keep faith in one compartment and citizenship in another. This book offers one constitutional
-              lens that holds them together.
+              <span data-cms="home.journey.intro">Many readers keep faith in one compartment and citizenship in another. This book offers one constitutional
+              lens that holds them together.</span>
             </p>
           </header>
           <div class="journey-grid motion-stagger">
             <article class="journey-card">
               <div class="journey-card__copy">
-                <p class="journey-kicker"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5.5h6.2A2 2 0 0 1 14.2 7.5v11H8.2A2.2 2.2 0 0 0 6 16.3z"/><path d="M18 5.5h-6.2A2 2 0 0 0 9.8 7.5v11h6A2.2 2.2 0 0 0 18 16.3z"/></svg>The Challenge</p>
-                <h3>Fragmented Truth</h3>
-                <p>Modern life often separates faith, civic life, and personal purpose. Without a coherent constitutional view of God and humanity, culture drifts from first principles.</p>
-                <a class="pillar-link" href="book.html">Explore the challenge <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
+                <p class="journey-kicker"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5.5h6.2A2 2 0 0 1 14.2 7.5v11H8.2A2.2 2.2 0 0 0 6 16.3z"/><path d="M18 5.5h-6.2A2 2 0 0 0 9.8 7.5v11h6A2.2 2.2 0 0 0 18 16.3z"/></svg><span data-cms="home.journey.cards.0.kicker">The Challenge</span></p>
+                <h3 data-cms="home.journey.cards.0.title">Fragmented Truth</h3>
+                <p><span data-cms="home.journey.cards.0.body">Modern life often separates faith, civic life, and personal purpose. Without a coherent constitutional view of God and humanity, culture drifts from first principles.</span></p>
+                <a class="pillar-link" href="book.html" data-cms-text="home.journey.cards.0.link" data-cms-href="home.journey.cards.0.href">Explore the challenge <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
               </div>
               <div class="journey-card__art journey-card__art--challenge" role="img" aria-label=""></div>
             </article>
             <article class="journey-card">
               <div class="journey-card__copy">
-                <p class="journey-kicker"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.2"/><path d="M12 3.2v2.4M12 18.4v2.4M3.2 12h2.4M18.4 12h2.4"/></svg>The Vision</p>
-                <h3>One Constitutional Frame</h3>
-                <p>Scripture, lineage, and national ideals are woven into a single arc so readers can see creation, redemption, and calling in one light.</p>
-                <a class="pillar-link" href="chapters.html#chapter-14">Explore the vision <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
+                <p class="journey-kicker"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.2"/><path d="M12 3.2v2.4M12 18.4v2.4M3.2 12h2.4M18.4 12h2.4"/></svg><span data-cms="home.journey.cards.1.kicker">The Vision</span></p>
+                <h3 data-cms="home.journey.cards.1.title">One Constitutional Frame</h3>
+                <p><span data-cms="home.journey.cards.1.body">Scripture, lineage, and national ideals are woven into a single arc so readers can see creation, redemption, and calling in one light.</span></p>
+                <a class="pillar-link" href="chapters.html#chapter-14" data-cms-text="home.journey.cards.1.link" data-cms-href="home.journey.cards.1.href">Explore the vision <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
               </div>
               <div class="journey-card__art journey-card__art--vision" role="img" aria-label=""></div>
             </article>
@@ -400,9 +504,9 @@
       <section id="home-chapters" class="entry-scene reveal" aria-labelledby="home-chapters-title">
         <div class="container">
           <header class="section-head text-center">
-            <h2 id="home-chapters-title">Chapters Worth Opening<br><span>First</span></h2>
+            <h2 id="home-chapters-title" data-cms="home.featuredChapters.heading">Chapters Worth Opening<br><span>First</span></h2>
             <p class="section-intro">
-              Start where your questions run deepest. Each chapter takes you into a key chapter in the full fourteen-chapter sequence.
+              <span data-cms="home.featuredChapters.intro">Start where your questions run deepest. Each chapter takes you into a key chapter in the full fourteen-chapter sequence.</span>
             </p>
           </header>
           <div class="featured-chapters-grid motion-stagger">
@@ -440,8 +544,8 @@
             </a>
           </div>
           <div class="entry-actions">
-            <a class="entry-link" href="quiz.html">Which chapter first? <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
-            <a class="entry-link" href="chapters.html">View all 14 chapters <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
+            <a class="entry-link" href="quiz.html"><span data-cms="home.featuredChapters.quizLink">Which chapter first? </span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
+            <a class="entry-link" href="chapters.html"><span data-cms="home.featuredChapters.allLink">View all 14 chapters </span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
           </div>
         </div>
       </section>
@@ -592,9 +696,9 @@
       <section id="home-resources" class="inside-scene reveal" aria-labelledby="home-resources-title">
         <div class="container">
           <header class="section-head text-center">
-            <h2 id="home-resources-title">Depth Beyond the<br><span>Table of Contents</span></h2>
+            <h2 id="home-resources-title" data-cms="home.resources.heading">Depth Beyond the<br><span>Table of Contents</span></h2>
             <p class="section-intro">
-              Reference lists and study notes for readers who teach, preach, or lead groups through the manuscript.
+              <span data-cms="home.resources.intro">Reference lists and study notes for readers who teach, preach, or lead groups through the manuscript.</span>
             </p>
           </header>
           <div class="inside-grid">
@@ -602,25 +706,25 @@
               <div class="inside-card__main">
                 <div class="inside-card__head">
                   <span class="inside-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 6.2c-1.7-1-3.6-1.5-5.8-1.2v12.4c2.1-.3 4 .2 5.8 1.2 1.8-1 3.7-1.5 5.8-1.2V5c-2.2-.3-4 .2-5.8 1.2z"/><path d="M12 6.2v12.4"/></svg></span>
-                  <p class="inside-kicker">Resources &amp; notes</p>
+                  <p class="inside-kicker" data-cms="home.resources.cards.0.kicker">Resources &amp; notes</p>
                 </div>
-                <h3>A Reference List and Recommended Books</h3>
-                <p>Books and references on Heaven and how we enter it, chosen for follow-up reading after the manuscript.</p>
-                <a class="inside-link" href="resources.html">Browse resources <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
+                <h3 data-cms="home.resources.cards.0.title">A Reference List and Recommended Books</h3>
+                <p data-cms="home.resources.cards.0.body">Books and references on Heaven and how we enter it, chosen for follow-up reading after the manuscript.</p>
+                <a class="inside-link" href="resources.html" data-cms-href="home.resources.cards.0.href" data-cms-text="home.resources.cards.0.link">Browse resources <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
               </div>
-              <img class="inside-card__photo" src="assets/resources-books.webp" alt="" width="1024" height="768" loading="lazy" decoding="async" />
+              <img class="inside-card__photo" src="assets/resources-books.webp" data-cms-src="home.resources.cards.0.image" alt="" width="1024" height="768" loading="lazy" decoding="async" />
             </article>
             <article class="inside-card">
               <div class="inside-card__main">
                 <div class="inside-card__head">
                   <span class="inside-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5h7.2L17.2 7.4V19.5H7z"/><path d="M14 4.6v3h3"/><path d="M9.3 11.2h5.4M9.3 14.2h5.4M9.3 17.2h3.2"/></svg></span>
-                  <p class="inside-kicker">Study materials</p>
+                  <p class="inside-kicker" data-cms="home.resources.cards.1.kicker">Study materials</p>
                 </div>
-                <h3>Additional Study Materials</h3>
-                <p>Frameworks for theological and constitutional discussion in community.</p>
-                <a class="inside-link" href="resources.html">View study aids <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
+                <h3 data-cms="home.resources.cards.1.title">Additional Study Materials</h3>
+                <p data-cms="home.resources.cards.1.body">Frameworks for theological and constitutional discussion in community.</p>
+                <a class="inside-link" href="resources.html" data-cms-href="home.resources.cards.1.href" data-cms-text="home.resources.cards.1.link">View study aids <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
               </div>
-              <img class="inside-card__photo" src="assets/resources-notes.webp" alt="" width="1024" height="768" loading="lazy" decoding="async" />
+              <img class="inside-card__photo" src="assets/resources-notes.webp" data-cms-src="home.resources.cards.1.image" alt="" width="1024" height="768" loading="lazy" decoding="async" />
             </article>
           </div>
         </div>
@@ -630,8 +734,8 @@
       <section id="home-audience" class="audience-scene reveal" aria-labelledby="home-audience-title">
         <div class="container">
           <header class="section-head text-center">
-            <h2 id="home-audience-title">Built for Readers, Leaders<br>&amp; Groups</h2>
-            <p class="section-intro">Whether you&rsquo;re reading alone, teaching others, or exploring ideas together, this site is designed for you.</p>
+            <h2 id="home-audience-title" data-cms="home.audience.heading">Built for Readers, Leaders<br>&amp; Groups</h2>
+            <p class="section-intro"><span data-cms="home.audience.intro">Whether you&rsquo;re reading alone, teaching others, or exploring ideas together, this site is designed for you.</span></p>
           </header>
           <div class="audience-grid">
             <a class="audience-card" href="chapters.html">
@@ -682,8 +786,8 @@
       <section id="home-summary" class="reveal" aria-labelledby="home-summary-title">
         <div class="container">
           <header class="section-head text-center">
-            <h2 id="home-summary-title">The <span>Constitution</span> of God</h2>
-            <p class="section-intro">Find answers to common questions about the book, its content, themes, and how it can help you on your journey.</p>
+            <h2 id="home-summary-title" data-cms="home.summary.heading">The <span>Constitution</span> of God</h2>
+            <p class="section-intro"><span data-cms="home.summary.intro">Find answers to common questions about the book, its content, themes, and how it can help you on your journey.</span></p>
           </header>
           <div class="qa-bar">
             <ul class="qa-facts">
@@ -711,8 +815,8 @@
       <section id="home-faq" class="reveal" aria-labelledby="home-faq-title">
         <div class="container">
           <header class="section-head text-center">
-            <h2 id="home-faq-title">Before you write or begin</h2>
-            <p class="section-intro">Find quick answers to the most common questions about the book, its structure, and how to get the most out of your reading experience.</p>
+            <h2 id="home-faq-title" data-cms="home.faq.heading">Before you write or begin</h2>
+            <p class="section-intro"><span data-cms="home.faq.intro">Find quick answers to the most common questions about the book, its structure, and how to get the most out of your reading experience.</span></p>
           </header>
           <div class="faq-list">
             <details class="faq-item">
@@ -803,15 +907,15 @@
       <!-- Final CTA -->
       <section id="home-cta" class="cta-scene reveal" aria-labelledby="home-cta-title">
         <div class="container">
-          <h2 id="home-cta-title">Ready to Explore<br>the <span>Manuscript?</span></h2>
+          <h2 id="home-cta-title" data-cms="home.cta.heading">Ready to Explore<br>the <span>Manuscript?</span></h2>
           <p>
-            Open the full chapter list, use the Resources page for context, or write in for media and speaking requests.
-            Each major topic on this site has its own page.
+            <span data-cms="home.cta.body">Open the full chapter list, use the Resources page for context, or write in for media and speaking requests.
+            Each major topic on this site has its own page.</span>
           </p>
           <div class="cta-actions">
-            <a class="cta-btn cta-btn--fill" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.2c-1.7-1-3.6-1.5-5.8-1.2v12.4c2.1-.3 4 .2 5.8 1.2 1.8-1 3.7-1.5 5.8-1.2V5c-2.2-.3-4 .2-5.8 1.2z"/><path d="M12 6.2v12.4"/></svg>Buy the book <svg class="cta-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
-            <a class="cta-btn" href="chapters.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5h7.2L17.2 7.4V19.5H7z"/><path d="M14 4.6v3h3"/><path d="M9.3 11.2h5.4M9.3 14.2h5.4"/></svg>View chapters <svg class="cta-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
-            <a class="cta-btn" href="reviews.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6 14.1 9l5.7.4-4.4 3.6 1.4 5.4L12 15.6 7.2 18.4 8.6 13 4.2 9.4 9.9 9z"/></svg>Read the reviews <svg class="cta-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
+            <a class="cta-btn cta-btn--fill" data-cms-text="home.cta.buttons.0.label" data-cms-href="home.cta.buttons.0.href" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.2c-1.7-1-3.6-1.5-5.8-1.2v12.4c2.1-.3 4 .2 5.8 1.2 1.8-1 3.7-1.5 5.8-1.2V5c-2.2-.3-4 .2-5.8 1.2z"/><path d="M12 6.2v12.4"/></svg>Buy the book <svg class="cta-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
+            <a class="cta-btn" data-cms-text="home.cta.buttons.1.label" data-cms-href="home.cta.buttons.1.href" href="chapters.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5h7.2L17.2 7.4V19.5H7z"/><path d="M14 4.6v3h3"/><path d="M9.3 11.2h5.4M9.3 14.2h5.4"/></svg>View chapters <svg class="cta-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
+            <a class="cta-btn" data-cms-text="home.cta.buttons.2.label" data-cms-href="home.cta.buttons.2.href" href="reviews.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6 14.1 9l5.7.4-4.4 3.6 1.4 5.4L12 15.6 7.2 18.4 8.6 13 4.2 9.4 9.9 9z"/></svg>Read the reviews <svg class="cta-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12"/><path d="m13 6 6 6-6 6"/></svg></a>
           </div>
         </div>
       </section>
@@ -828,11 +932,11 @@
             <path d="M32 22.1v16.8" />
           </svg></span>
             <span class="footer-mark-copy">
-              <span class="footer-pro-title">The Constitution of God</span>
-              <span class="footer-pro-tagline">Official author site, Mark H Steffen</span>
+              <span class="footer-pro-title" data-cms="global.footer.title">The Constitution of God</span>
+              <span class="footer-pro-tagline" data-cms="global.footer.tagline">Official author site, Mark H Steffen</span>
             </span>
           </a>
-          <p class="footer-pro-desc">A fourteen-chapter theological manuscript connecting divine order, constitutional language, and practical purpose.</p>
+          <p class="footer-pro-desc" data-cms="global.footer.description">A fourteen-chapter theological manuscript connecting divine order, constitutional language, and practical purpose.</p>
           <ul class="footer-marks">
             <li><svg class="footer-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4.5h8v15l-4-2.2-4 2.2v-15Z"/><path d="M8 4.5H6.2A1.2 1.2 0 0 0 5 5.7V18"/></svg><span>14 chapters</span></li>
             <li><svg class="footer-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5.2" width="16" height="14.2" rx="1.4"/><path d="M4 9.4h16M8 3.6v3.2M16 3.6v3.2"/></svg><span>2026 edition</span></li>
@@ -869,11 +973,13 @@
       </div>
       <div class="footer-pro-bottom">
         <div class="container footer-pro-bottom-inner">
-          <p>&copy; 2026 Mark H Steffen. All rights reserved. Official author edition.</p>
-          <a class="footer-write" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer"><svg class="footer-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.2A2.2 2.2 0 0 1 7.2 3H19v16H7.2A2.2 2.2 0 0 0 5 21.2V5.2Z"/><path d="M5 18.8A2.2 2.2 0 0 1 7.2 16.6H19"/></svg><span>Buy the book</span></a>
+          <p><span data-cms="global.footer.copyright">&copy; 2026 Mark H Steffen. All rights reserved. Official author edition.</span></p>
+          <a class="footer-write" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer" data-cms-href="global.footer.ctaUrl"><svg class="footer-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.2A2.2 2.2 0 0 1 7.2 3H19v16H7.2A2.2 2.2 0 0 0 5 21.2V5.2Z"/><path d="M5 18.8A2.2 2.2 0 0 1 7.2 16.6H19"/></svg><span data-cms="global.footer.ctaLabel">Buy the book</span></a>
         </div>
       </div>
     </footer>
+    <script src="music.js?v=5" defer></script>
+    <script src="content.js?v=26" defer></script>
     <script src="script.js?v=26" defer></script>
   </body>
 </html>

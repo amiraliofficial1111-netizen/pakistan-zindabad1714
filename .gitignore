@@ -1,1 +1,4 @@
 .vercel
+credentials.json
+__pycache__/
+*.bak

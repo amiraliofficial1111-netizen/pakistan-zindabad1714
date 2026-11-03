@@ -1,0 +1,76 @@
+{
+  "pages": [
+    {
+      "id": "home",
+      "file": "index.html",
+      "label": "Home",
+      "title": "Home | The Constitution of God | Mark H Steffen",
+      "heading": "The Constitution of God",
+      "lead": "Heaven, America, and the purpose of life, brought together in one constitutional and theological argument.",
+      "description": "Official author hub for The Constitution of God by Mark H Steffen: the manuscript, a reader quiz, editorial reviews, and essays on divine order, Christ, and America."
+    },
+    {
+      "id": "books",
+      "file": "books.html",
+      "label": "Books",
+      "title": "Books | The Constitution of God | Mark H Steffen",
+      "heading": "Books",
+      "lead": "Each published volume is listed here.",
+      "description": "The books of Mark H Steffen: volumes in print, and titles added here when they are published."
+    },
+    {
+      "id": "chapters",
+      "file": "chapters.html",
+      "label": "Chapters",
+      "title": "Chapters | The Constitution of God | Mark H Steffen",
+      "heading": "Key Chapters",
+      "lead": "All fourteen chapters, in order. Open a chapter to read what it covers.",
+      "description": "Full table of contents for every chapter of The Constitution of God."
+    },
+    {
+      "id": "journal",
+      "file": "journal.html",
+      "label": "Journal",
+      "title": "Journal | The Constitution of God | Mark H Steffen",
+      "heading": "From the Author’s Desk",
+      "lead": "Notes on the argument of The Constitution of God : where it starts, where it turns, what it claims about America, and how to read the fourteen chapters with other people.",
+      "description": "Essays by Mark H Steffen on The Constitution of God: divine order, the Second Adam, America, and how a group can read the fourteen chapters."
+    },
+    {
+      "id": "blogs",
+      "file": "blogs.html",
+      "label": "Blogs",
+      "title": "Blogs | The Constitution of God | Mark H Steffen",
+      "heading": "Blogs",
+      "lead": "Notes from the manuscripts behind The Constitution of God : the divine blueprint, the garden, heaven on earth, and new posts from the desk.",
+      "description": "Three blogs from Mark H Steffen: the divine blueprint, the Garden of Eden, and heaven on earth."
+    },
+    {
+      "id": "reviews",
+      "file": "reviews.html",
+      "label": "Reviews",
+      "title": "Editorial Reviews | The Constitution of God | Mark H Steffen",
+      "heading": "How the Book Is Built",
+      "lead": "Three reviews from this site’s editorial desk. They assess the argument Mark H Steffen has made public: the chapter architecture, the civic claim, and the book’s fitness for a group. They are not reprints from another magazine.",
+      "description": "Three editorial reviews of The Constitution of God by Mark H Steffen: the fourteen-chapter arc, the civic echo, and how a group can read the book."
+    },
+    {
+      "id": "author",
+      "file": "author.html",
+      "label": "Author",
+      "title": "About the Author | Mark H Steffen",
+      "heading": "Mark H Steffen",
+      "lead": "Author of The Constitution of God , writing with theological depth, constitutional language, and a clear call to purpose for readers and communities.",
+      "description": "About Mark H Steffen, author of The Constitution of God."
+    },
+    {
+      "id": "contact",
+      "file": "contact.html",
+      "label": "Contact",
+      "title": "Contact | The Constitution of God | Mark H Steffen",
+      "heading": "Contact",
+      "lead": "The Constitution of God is available on Amazon. Write here for a signed set, books for a study group, or a speaking invitation.",
+      "description": "Contact for media, speaking, and book updates for The Constitution of God."
+    }
+  ]
+}

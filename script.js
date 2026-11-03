@@ -644,7 +644,7 @@ if (contactForm) {
       title: "Journal",
       keywords: ["journal", "blog", "article", "essay", "essays"],
       paragraphs: [
-        "The journal is four essays: divine constitutional order, the Second Adam, Heaven and America, and how a group can read the fourteen chapters.",
+        "The journal is the desk essays. Open it for the full list, including any note published since the original four.",
       ],
       links: [["journal.html", "Open the journal"]],
       chips: ["What is chapter 6?", "How do groups read it?"],
@@ -1474,4 +1474,34 @@ if (contactForm) {
 
   show(0);
   setPaused(paused);
+})();
+
+(function initAudioSample() {
+  const root = document.querySelector("[data-audio-sample]");
+  if (!root) return;
+  const audio = root.querySelector(".audio-sample__element");
+  const now = root.querySelector("[data-audio-now]");
+  const tracks = [...root.querySelectorAll("[data-audio-src]")];
+  if (!audio || !tracks.length) return;
+
+  const setTrack = (button, play) => {
+    tracks.forEach((track) => {
+      const on = track === button;
+      track.classList.toggle("is-active", on);
+      track.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    const src = button.getAttribute("data-audio-src");
+    const label = button.getAttribute("data-audio-label") || "Sample";
+    if (src && audio.getAttribute("src") !== src) {
+      audio.src = src;
+    }
+    if (now) now.textContent = `Now playing: ${label}`;
+    if (play) {
+      audio.play().catch(() => {});
+    }
+  };
+
+  tracks.forEach((button) => {
+    button.addEventListener("click", () => setTrack(button, true));
+  });
 })();

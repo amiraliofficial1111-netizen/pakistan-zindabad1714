@@ -17,7 +17,7 @@
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Outfit:wght@300;400;500;600&display=swap" /></noscript>
-    <link rel="stylesheet" href="styles.css?v=62" />
+    <link rel="stylesheet" href="styles.css?v=91" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="favicon.svg" />
     <meta name="theme-color" content="#07091a" />
@@ -97,7 +97,7 @@
     <header class="site-header" role="banner">
       <div class="container nav-wrap">
         <a href="index.html" class="brand" aria-label="The Constitution of God, home">
-          <span class="brand-text">The Constitution of God</span>
+          <span class="brand-text" data-cms="global.header.brand">The Constitution of God</span>
         </a>
         <nav class="nav-links" id="navLinks" role="navigation" aria-label="Primary">
           <a href="index.html">Home</a>
@@ -108,10 +108,10 @@
           <a href="reviews.html" class="active">Reviews</a>
           <a href="author.html">Author</a>
           <a href="contact.html">Contact</a>
-        <a class="nav-request" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer">Buy the book</a>
+        <a class="nav-request" data-cms-href="global.header.ctaUrl" data-cms="global.header.ctaLabel" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer">Buy the book</a>
         </nav>
         <div class="nav-end">
-          <a class="header-cta" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer">Buy the book</a>
+          <a class="header-cta" data-cms-href="global.header.ctaUrl" data-cms="global.header.ctaLabel" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer">Buy the book</a>
           <button type="button" class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">Menu</button>
         </div>
       </div>
@@ -141,8 +141,8 @@
           <div class="review-stack">
             <article class="review-card">
               <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4.5 4.5 8.2 12 12l7.5-3.8z"/><path d="M4.5 12 12 15.8 19.5 12"/><path d="M4.5 15.6 12 19.4l7.5-3.8"/></svg></span>
-              <p class="hub-kicker">Structure</p>
-              <h2>One Argument in Fourteen Chapters</h2>
+              <p class="hub-kicker"><span data-cms="reviews.cards.0.kicker">Structure</span></p>
+              <h2><span data-cms="reviews.cards.0.title">One Argument in Fourteen Chapters</span></h2>
               <p class="review-byline">Official site editorial desk · 22 October 2026</p>
               <p class="review-scope">
                 Scope: the 2026 edition’s chapter titles, the three reading paths, and the author’s framing on this
@@ -210,8 +210,8 @@
 
             <article class="review-card">
               <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 9c1.6 1.4 2.8 1.4 4.4 0s2.8-1.4 4.4 0 2.8 1.4 4.4 0"/><path d="M4.5 14c1.6 1.4 2.8 1.4 4.4 0s2.8-1.4 4.4 0 2.8 1.4 4.4 0"/></svg></span>
-              <p class="hub-kicker">Civic argument</p>
-              <h2>An Echo, Not a Slogan</h2>
+              <p class="hub-kicker"><span data-cms="reviews.cards.1.kicker">Civic argument</span></p>
+              <h2><span data-cms="reviews.cards.1.title">An Echo, Not a Slogan</span></h2>
               <p class="review-byline">Official site editorial desk · 22 October 2026</p>
               <p class="review-scope">
                 Scope: chapters 11 through 14 as titled and described on the official site, read against the opening
@@ -279,8 +279,8 @@
 
             <article class="review-card">
               <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 18.5V7.2L12 4.5l7 2.7v11.3"/><path d="M12 4.5V18"/></svg></span>
-              <p class="hub-kicker">For groups</p>
-              <h2>A Book That Can Be Taught</h2>
+              <p class="hub-kicker"><span data-cms="reviews.cards.2.kicker">For groups</span></p>
+              <h2><span data-cms="reviews.cards.2.title">A Book That Can Be Taught</span></h2>
               <p class="review-byline">Official site editorial desk · 22 October 2026</p>
               <p class="review-scope">
                 Scope: the chapter grid, the published paths, the resources page, and what a leader can honestly assign
@@ -366,11 +366,11 @@
             <path d="M32 22.1v16.8" />
           </svg></span>
             <span class="footer-mark-copy">
-              <span class="footer-pro-title">The Constitution of God</span>
-              <span class="footer-pro-tagline">Official author site, Mark H Steffen</span>
+              <span class="footer-pro-title" data-cms="global.footer.title">The Constitution of God</span>
+              <span class="footer-pro-tagline" data-cms="global.footer.tagline">Official author site, Mark H Steffen</span>
             </span>
           </a>
-          <p class="footer-pro-desc">A fourteen-chapter theological manuscript connecting divine order, constitutional language, and practical purpose.</p>
+          <p class="footer-pro-desc" data-cms="global.footer.description">A fourteen-chapter theological manuscript connecting divine order, constitutional language, and practical purpose.</p>
           <ul class="footer-marks">
             <li><svg class="footer-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4.5h8v15l-4-2.2-4 2.2v-15Z"/><path d="M8 4.5H6.2A1.2 1.2 0 0 0 5 5.7V18"/></svg><span>14 chapters</span></li>
             <li><svg class="footer-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5.2" width="16" height="14.2" rx="1.4"/><path d="M4 9.4h16M8 3.6v3.2M16 3.6v3.2"/></svg><span>2026 edition</span></li>
@@ -407,11 +407,13 @@
       </div>
       <div class="footer-pro-bottom">
         <div class="container footer-pro-bottom-inner">
-          <p>&copy; 2026 Mark H Steffen. All rights reserved. Official author edition.</p>
-          <a class="footer-write" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer"><svg class="footer-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.2A2.2 2.2 0 0 1 7.2 3H19v16H7.2A2.2 2.2 0 0 0 5 21.2V5.2Z"/><path d="M5 18.8A2.2 2.2 0 0 1 7.2 16.6H19"/></svg><span>Buy the book</span></a>
+          <p><span data-cms="global.footer.copyright">&copy; 2026 Mark H Steffen. All rights reserved. Official author edition.</span></p>
+          <a class="footer-write" href="https://a.co/d/0iWIUDML" target="_blank" rel="noopener noreferrer" data-cms-href="global.footer.ctaUrl"><svg class="footer-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.2A2.2 2.2 0 0 1 7.2 3H19v16H7.2A2.2 2.2 0 0 0 5 21.2V5.2Z"/><path d="M5 18.8A2.2 2.2 0 0 1 7.2 16.6H19"/></svg><span data-cms="global.footer.ctaLabel">Buy the book</span></a>
         </div>
       </div>
     </footer>
+    <script src="music.js?v=5" defer></script>
+    <script src="content.js?v=27" defer></script>
     <script src="script.js?v=26" defer></script>
   </body>
 </html>

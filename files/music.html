@@ -4,18 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Audiobook | The Constitution of God | Mark H Steffen</title>
-    <meta name="description" content="The audiobook of The Constitution of God. Mark H Steffen reads the opening credits, all fourteen chapters, and the closing credits." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Outfit:wght@300;400;500;600&display=swap"
-      rel="preload"
-      as="style"
-      fetchpriority="low"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Outfit:wght@300;400;500;600&display=swap" /></noscript>
-    <link rel="stylesheet" href="styles.css?v=121" />
+    <meta name="description" content="The audiobook of The Constitution of God. Mark H Steffen reads the opening credits and the chapter samples." />
+    <link rel="preload" href="assets/fonts/outfit.woff2?v=1" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/cormorant.woff2?v=1" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="styles.css?v=127" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="favicon.svg" />
 
@@ -30,11 +22,11 @@
     <meta property="og:site_name" content="The Constitution of God" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Audiobook | The Constitution of God | Mark H Steffen" />
-    <meta property="og:description" content="Mark H Steffen reads all fourteen chapters of The Constitution of God." />
+    <meta property="og:description" content="Mark H Steffen reads the opening credits and the chapter samples of The Constitution of God." />
     <meta property="og:image" content="assets/mark-steffen-the-constitution-of-god-book-mockup-04.webp" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Audiobook | The Constitution of God" />
-    <meta name="twitter:description" content="Mark H Steffen reads all fourteen chapters." />
+    <meta name="twitter:description" content="Mark H Steffen reads the opening credits and the chapter samples." />
   </head>
   <body>
     <canvas id="starfieldCanvas" class="site-starfield" aria-hidden="true"></canvas>
@@ -73,7 +65,7 @@
         <div class="container">
           <p class="hub-kicker">Narration and music</p>
           <h1 id="music-hero-title">Audiobook</h1>
-          <p class="page-lead">Mark H Steffen reads the opening credits, all fourteen chapters, and the closing credits.</p>
+          <p class="page-lead">Mark H Steffen reads the opening credits and the chapter samples.</p>
         </div>
       </section>
 
@@ -88,7 +80,7 @@
           <section class="audio-group audio-group--bars" aria-labelledby="chapter-audio-title">
               <h3 id="chapter-audio-title">Chapter narrations</h3>
               <ol class="audio-group__list audio-book-bars">
-                <li class="audio-row audio-row--chapter" data-audio-id="narration:opening-credits" data-audio-src="assets/audio/opening-credits.mp3" data-audio-title="Opening Credits" data-audio-channel="narration">
+                <li class="audio-row audio-row--chapter" data-audio-id="narration:opening-credits" data-audio-src="assets/audio/opening-credits-all.mp3" data-audio-title="Opening Credits" data-audio-channel="narration">
                   <div class="audio-row__copy">
                     <p class="audio-row__kicker">Opening</p>
                     <p class="audio-row__title">Opening Credits</p>
@@ -101,7 +93,7 @@
                   </button>
                   </div>
                 </li>
-                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-01" data-audio-src="assets/audio/chapter-01-sample.mp3" data-audio-title="The Original Constitution of God" data-audio-channel="narration">
+                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-01" data-audio-src="assets/audio/chapter-01-all.mp3" data-audio-title="The Original Constitution of God" data-audio-channel="narration">
                   <div class="audio-row__copy">
                     <p class="audio-row__kicker">01</p>
                     <p class="audio-row__title">The Original Constitution of God</p>
@@ -114,7 +106,7 @@
                   </button>
                   </div>
                 </li>
-                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-02" data-audio-src="assets/audio/chapter-02.mp3" data-audio-title="The Constitutional Concept of God for the New World" data-audio-channel="narration">
+                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-02" data-audio-src="assets/audio/chapter-02-all.mp3" data-audio-title="The Constitutional Concept of God for the New World" data-audio-channel="narration">
                   <div class="audio-row__copy">
                     <p class="audio-row__kicker">02</p>
                     <p class="audio-row__title">The Constitutional Concept of God for the New World</p>
@@ -127,7 +119,7 @@
                   </button>
                   </div>
                 </li>
-                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-03" data-audio-src="assets/audio/chapter-03.mp3" data-audio-title="God’s Original Constitution" data-audio-channel="narration">
+                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-03" data-audio-src="assets/audio/chapter-03-all.mp3" data-audio-title="God’s Original Constitution" data-audio-channel="narration">
                   <div class="audio-row__copy">
                     <p class="audio-row__kicker">03</p>
                     <p class="audio-row__title">God&rsquo;s Original Constitution</p>
@@ -140,7 +132,7 @@
                   </button>
                   </div>
                 </li>
-                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-04" data-audio-src="assets/audio/chapter-04.mp3" data-audio-title="The Origin of Sin" data-audio-channel="narration">
+                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-04" data-audio-src="assets/audio/chapter-04-all.mp3" data-audio-title="The Origin of Sin" data-audio-channel="narration">
                   <div class="audio-row__copy">
                     <p class="audio-row__kicker">04</p>
                     <p class="audio-row__title">The Origin of Sin</p>
@@ -153,20 +145,7 @@
                   </button>
                   </div>
                 </li>
-                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-05" data-audio-src="assets/audio/chapter-05.mp3" data-audio-title="Adam and Eve’s Life After the Garden" data-audio-channel="narration">
-                  <div class="audio-row__copy">
-                    <p class="audio-row__kicker">05</p>
-                    <p class="audio-row__title">Adam and Eve&rsquo;s Life After the Garden</p>
-                    <p class="audio-row__note">Mark H Steffen reads this chapter.</p>
-                  </div>
-                  <div class="audio-row__controls">
-                    <button type="button" data-audio-play aria-label="Play the audiobook">
-                    <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.2 5.8v12.4L18.8 12z"/></svg>
-                    <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 5.5h3.2v13H7.5zM13.3 5.5h3.2v13h-3.2z"/></svg>
-                  </button>
-                  </div>
-                </li>
-                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-06" data-audio-src="assets/audio/chapter-06.mp3" data-audio-title="Jesus as the Second Adam" data-audio-channel="narration">
+                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-06" data-audio-src="assets/audio/chapter-06-all.mp3" data-audio-title="Jesus as the Second Adam" data-audio-channel="narration">
                   <div class="audio-row__copy">
                     <p class="audio-row__kicker">06</p>
                     <p class="audio-row__title">Jesus as the Second Adam</p>
@@ -179,7 +158,7 @@
                   </button>
                   </div>
                 </li>
-                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-07" data-audio-src="assets/audio/chapter-07.mp3" data-audio-title="The Appearance of the Third Adam and Eve" data-audio-channel="narration">
+                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-07" data-audio-src="assets/audio/chapter-07-all.mp3" data-audio-title="The Appearance of the Third Adam and Eve" data-audio-channel="narration">
                   <div class="audio-row__copy">
                     <p class="audio-row__kicker">07</p>
                     <p class="audio-row__title">The Appearance of the Third Adam and Eve</p>
@@ -192,7 +171,7 @@
                   </button>
                   </div>
                 </li>
-                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-08" data-audio-src="assets/audio/chapter-08.mp3" data-audio-title="The Lineage Chain" data-audio-channel="narration">
+                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-08" data-audio-src="assets/audio/chapter-08-all.mp3" data-audio-title="The Lineage Chain" data-audio-channel="narration">
                   <div class="audio-row__copy">
                     <p class="audio-row__kicker">08</p>
                     <p class="audio-row__title">The Lineage Chain</p>
@@ -205,20 +184,7 @@
                   </button>
                   </div>
                 </li>
-                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-09" data-audio-src="assets/audio/chapter-09.mp3" data-audio-title="The Birth of the Third Adam and the First Eve" data-audio-channel="narration">
-                  <div class="audio-row__copy">
-                    <p class="audio-row__kicker">09</p>
-                    <p class="audio-row__title">The Birth of the Third Adam and the First Eve</p>
-                    <p class="audio-row__note">Mark H Steffen reads this chapter.</p>
-                  </div>
-                  <div class="audio-row__controls">
-                    <button type="button" data-audio-play aria-label="Play the audiobook">
-                    <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.2 5.8v12.4L18.8 12z"/></svg>
-                    <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 5.5h3.2v13H7.5zM13.3 5.5h3.2v13h-3.2z"/></svg>
-                  </button>
-                  </div>
-                </li>
-                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-10" data-audio-src="assets/audio/chapter-10.mp3" data-audio-title="Jesus Must Return" data-audio-channel="narration">
+                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-10" data-audio-src="assets/audio/chapter-10-all.mp3" data-audio-title="Jesus Must Return" data-audio-channel="narration">
                   <div class="audio-row__copy">
                     <p class="audio-row__kicker">10</p>
                     <p class="audio-row__title">Jesus Must Return</p>
@@ -231,7 +197,7 @@
                   </button>
                   </div>
                 </li>
-                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-11" data-audio-src="assets/audio/chapter-11.mp3" data-audio-title="The Makeup of Creation" data-audio-channel="narration">
+                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-11" data-audio-src="assets/audio/chapter-11-all.mp3" data-audio-title="The Makeup of Creation" data-audio-channel="narration">
                   <div class="audio-row__copy">
                     <p class="audio-row__kicker">11</p>
                     <p class="audio-row__title">The Makeup of Creation</p>
@@ -239,12 +205,12 @@
                   </div>
                   <div class="audio-row__controls">
                     <button type="button" data-audio-play aria-label="Play the audiobook">
-                    <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.2 5.8v12.4L18.8 12z"/></svg>
-                    <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 5.5h3.2v13H7.5zM13.3 5.5h3.2v13h-3.2z"/></svg>
-                  </button>
+                      <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.2 5.8v12.4L18.8 12z"/></svg>
+                      <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 5.5h3.2v13H7.5zM13.3 5.5h3.2v13h-3.2z"/></svg>
+                    </button>
                   </div>
                 </li>
-                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-12" data-audio-src="assets/audio/chapter-12.mp3" data-audio-title="The American Constitution" data-audio-channel="narration">
+                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-12" data-audio-src="assets/audio/chapter-12-all.mp3" data-audio-title="The American Constitution" data-audio-channel="narration">
                   <div class="audio-row__copy">
                     <p class="audio-row__kicker">12</p>
                     <p class="audio-row__title">The American Constitution</p>
@@ -257,7 +223,7 @@
                   </button>
                   </div>
                 </li>
-                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-13" data-audio-src="assets/audio/chapter-13.mp3" data-audio-title="God’s Desire" data-audio-channel="narration">
+                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-13" data-audio-src="assets/audio/chapter-13-all.mp3" data-audio-title="God’s Desire" data-audio-channel="narration">
                   <div class="audio-row__copy">
                     <p class="audio-row__kicker">13</p>
                     <p class="audio-row__title">God&rsquo;s Desire</p>
@@ -270,24 +236,11 @@
                   </button>
                   </div>
                 </li>
-                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-14" data-audio-src="assets/audio/chapter-14.mp3" data-audio-title="The Purpose of Life and the Desire of America" data-audio-channel="narration">
+                <li class="audio-row audio-row--chapter" data-audio-id="narration:chapter-14" data-audio-src="assets/audio/chapter-14-all.mp3" data-audio-title="The Purpose of Life and the Desire of America" data-audio-channel="narration">
                   <div class="audio-row__copy">
                     <p class="audio-row__kicker">14</p>
                     <p class="audio-row__title">The Purpose of Life and the Desire of America</p>
                     <p class="audio-row__note">Mark H Steffen reads this chapter.</p>
-                  </div>
-                  <div class="audio-row__controls">
-                    <button type="button" data-audio-play aria-label="Play the audiobook">
-                    <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.2 5.8v12.4L18.8 12z"/></svg>
-                    <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 5.5h3.2v13H7.5zM13.3 5.5h3.2v13h-3.2z"/></svg>
-                  </button>
-                  </div>
-                </li>
-                <li class="audio-row audio-row--chapter" data-audio-id="narration:closing-credits" data-audio-src="assets/audio/closing-credits.mp3" data-audio-title="Closing Credits" data-audio-channel="narration">
-                  <div class="audio-row__copy">
-                    <p class="audio-row__kicker">Closing</p>
-                    <p class="audio-row__title">Closing Credits</p>
-                    <p class="audio-row__note">The audiobook closing credits.</p>
                   </div>
                   <div class="audio-row__controls">
                     <button type="button" data-audio-play aria-label="Play the audiobook">
@@ -360,8 +313,8 @@
         </div>
       </div>
     </footer>
-    <script src="music.js?v=23" defer></script>
+    <script src="music.js?v=25" defer></script>
     <script src="content.js?v=30" defer></script>
-    <script src="script.js?v=38" defer></script>
+    <script src="script.js?v=39" defer></script>
   </body>
 </html>

@@ -409,7 +409,7 @@ class SiteHandler(SimpleHTTPRequestHandler):
         if private:
             self.send_header("Cache-Control", "no-store")
         elif path in ("/pages.json", "/site-content.json"):
-            self.send_header("Cache-Control", "private, no-cache")
+            self.send_header("Cache-Control", "private, max-age=120")
         elif "v=" in query:
             self.send_header("Cache-Control", "public, max-age=31536000, immutable")
         elif path.endswith((".webp", ".svg", ".png", ".jpg", ".jpeg", ".mp3", ".woff2")):
@@ -449,7 +449,7 @@ class SiteHandler(SimpleHTTPRequestHandler):
                         raw = handle.read()
                 except OSError:
                     return super().send_head()
-                payload = gzip.compress(raw, compresslevel=5)
+                payload = gzip.compress(raw, compresslevel=6)
                 if len(payload) >= len(raw):
                     return super().send_head()
                 if len(GZIP_CACHE) > 80:

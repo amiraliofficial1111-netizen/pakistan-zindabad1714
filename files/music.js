@@ -54,6 +54,7 @@
     lastSave: 0,
     libraryRoot: null,
     widget: null,
+    shuffle: false,
   };
 
   function isAdminPage() {
@@ -134,6 +135,16 @@
       render();
     });
     audio.addEventListener("ended", () => {
+      if (engine.shuffle && engine.current && engine.current.channel !== "music") {
+        const rows = libraryRows();
+        const index = currentLibraryIndex();
+        const pool = rows.filter((_, item) => item !== index);
+        const pick = pool[Math.floor(Math.random() * pool.length)];
+        if (pick) {
+          playLibraryRow(pick);
+          return;
+        }
+      }
       engine.status = "paused";
       save();
       render();
@@ -298,6 +309,11 @@
       const total = engine.libraryRoot.querySelector("[data-audio-duration]");
       if (elapsed) elapsed.textContent = show ? formatTime(time) : "0:00";
       if (total) total.textContent = show && duration ? formatTime(duration) : "0:00";
+      const previous = engine.libraryRoot.querySelector("[data-audio-prev]");
+      if (previous && libraryTrack) {
+        const index = currentLibraryIndex();
+        previous.disabled = index <= 0 && time <= 3;
+      }
     }
   }
 
@@ -389,14 +405,16 @@
       if (meta) {
         const row = index >= 0 ? rows[index] : null;
         const label = row && row.querySelector(".audio-row__kicker");
-        meta.textContent = label ? label.textContent : "Chapter narration";
+        meta.textContent = label ? label.textContent : "";
       }
       if (toggle) {
         toggle.setAttribute("aria-label", failed ? "Try again" : active ? "Pause" : "Play");
         toggle.setAttribute("aria-pressed", libraryTrack && engine.status === "playing" ? "true" : "false");
       }
-      if (prev) prev.disabled = index <= 0;
-      if (next) next.disabled = index >= 0 && index >= rows.length - 1;
+      if (prev) prev.disabled = index <= 0 && !(engine.audio && engine.audio.currentTime > 3);
+      if (next) next.disabled = engine.shuffle ? rows.length < 2 : index >= 0 && index >= rows.length - 1;
+      const shuffle = panel.querySelector("[data-audio-shuffle]");
+      if (shuffle) shuffle.setAttribute("aria-pressed", engine.shuffle ? "true" : "false");
     }
     if (now) {
       const named = panel && libraryTrack && engine.status !== "idle";
@@ -447,6 +465,17 @@
     const rows = libraryRows();
     if (!rows.length) return;
     const index = currentLibraryIndex();
+    if (step > 0 && engine.shuffle && rows.length > 1) {
+      let pick = Math.floor(Math.random() * rows.length);
+      if (pick === index) pick = (pick + 1) % rows.length;
+      playLibraryRow(rows[pick]);
+      return;
+    }
+    if (step < 0 && index >= 0 && engine.audio && engine.current && engine.current.channel !== "music" && engine.audio.currentTime > 3) {
+      engine.audio.currentTime = 0;
+      renderProgress();
+      return;
+    }
     if (index < 0) {
       if (step > 0) playLibraryRow(rows[0]);
       return;
@@ -477,10 +506,22 @@
     const prev = panel.querySelector("[data-audio-prev]");
     const next = panel.querySelector("[data-audio-next]");
     const toggle = panel.querySelector("[data-audio-toggle]");
+    const shuffle = panel.querySelector("[data-audio-shuffle]");
+    const playlist = panel.querySelector("[data-audio-playlist]");
     const seek = panel.querySelector("[data-audio-bar]");
     if (prev) prev.addEventListener("click", () => stepLibrary(-1));
     if (next) next.addEventListener("click", () => stepLibrary(1));
     if (toggle) toggle.addEventListener("click", toggleLibrary);
+    if (shuffle) shuffle.addEventListener("click", () => {
+      engine.shuffle = !engine.shuffle;
+      shuffle.setAttribute("aria-pressed", engine.shuffle ? "true" : "false");
+    });
+    if (playlist) playlist.addEventListener("click", () => {
+      const rows = libraryRows(root);
+      const index = currentLibraryIndex(root);
+      const target = index >= 0 ? rows[index] : root.querySelector(".audio-book-bars");
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
     if (!seek) return;
     const seekTo = (clientX) => {
       const audio = engine.audio;

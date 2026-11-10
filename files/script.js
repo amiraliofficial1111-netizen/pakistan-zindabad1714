@@ -362,12 +362,20 @@ if (contactForm) {
     ctx.fill();
   }
 
+  let lastDraw = 0;
+
   function tick(ts) {
     if (document.hidden) {
       return;
     }
 
-    const dt = Math.min(48, ts - lastTs || 16);
+    rafId = requestAnimationFrame(tick);
+    if (ts - lastDraw < 32) {
+      return;
+    }
+
+    const dt = Math.min(48, ts - lastDraw || 16);
+    lastDraw = ts;
     lastTs = ts;
 
     const maxStars = targetCount() + 20;
@@ -408,8 +416,6 @@ if (contactForm) {
     }
 
     ctx.restore();
-
-    rafId = requestAnimationFrame(tick);
   }
 
   function drawStaticField() {

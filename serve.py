@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Local site server. Static pages, plus an authenticated desk for the journal and site files."""
 
+import gzip
+import io
 import json
 import os
 import re
@@ -10,7 +12,7 @@ from email.utils import format_datetime
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import unquote, urlparse
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "files")
 BLOGS = os.path.join(ROOT, "blogs.json")
 JOURNAL = os.path.join(ROOT, "journal.json")
 PAGES = os.path.join(ROOT, "pages.json")
@@ -23,6 +25,7 @@ DEFAULT_PASSWORD = os.environ.get("ADMIN_PASSWORD", "mark-desk")
 TOKENS = set()
 MAX_BODY = 200_000
 MAX_FILE = 1_600_000
+GZIP_CACHE = {}
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
@@ -401,11 +404,66 @@ class SiteHandler(SimpleHTTPRequestHandler):
 
     def end_headers(self):
         path = urlparse(self.path).path
-        if path in ("/blogs.json", "/journal.json", "/pages.json", "/site-content.json", "/api/blogs", "/admin.html", "/backend") or path.startswith("/api/"):
+        query = urlparse(self.path).query
+        private = path in ("/blogs.json", "/journal.json", "/api/blogs", "/admin.html", "/backend") or path.startswith("/api/")
+        if private:
             self.send_header("Cache-Control", "no-store")
+        elif path in ("/pages.json", "/site-content.json"):
+            self.send_header("Cache-Control", "private, no-cache")
+        elif "v=" in query:
+            self.send_header("Cache-Control", "public, max-age=31536000, immutable")
+        elif path.endswith((".webp", ".svg", ".png", ".jpg", ".jpeg", ".mp3", ".woff2")):
+            self.send_header("Cache-Control", "public, max-age=604800")
+        elif path.endswith((".html", ".xml")) or path in ("/", ""):
+            self.send_header("Cache-Control", "no-cache")
         if path in ("/admin.html", "/backend"):
             self.send_header("X-Robots-Tag", "noindex, nofollow")
         super().end_headers()
+
+    def send_head(self):
+        parsed = urlparse(self.path)
+        target = self.translate_path(parsed.path)
+        if os.path.isdir(target):
+            index = os.path.join(target, "index.html")
+            target = index if os.path.isfile(index) else target
+        ext = os.path.splitext(target)[1].lower()
+        compressible = ext in {".html", ".css", ".js", ".json", ".svg", ".xml", ".txt"}
+        accepts_gzip = "gzip" in self.headers.get("Accept-Encoding", "").lower()
+        if compressible and accepts_gzip and os.path.isfile(target):
+            try:
+                stat = os.stat(target)
+            except OSError:
+                return super().send_head()
+            etag = f'W/"{stat.st_mtime_ns:x}-{stat.st_size:x}-gz"'
+            if self.headers.get("If-None-Match") == etag:
+                self.send_response(304)
+                self.send_header("ETag", etag)
+                self.end_headers()
+                return None
+            key = (stat.st_mtime_ns, stat.st_size)
+            cached = GZIP_CACHE.get(target)
+            payload = cached[1] if cached and cached[0] == key else None
+            if payload is None:
+                try:
+                    with open(target, "rb") as handle:
+                        raw = handle.read()
+                except OSError:
+                    return super().send_head()
+                payload = gzip.compress(raw, compresslevel=5)
+                if len(payload) >= len(raw):
+                    return super().send_head()
+                if len(GZIP_CACHE) > 80:
+                    GZIP_CACHE.pop(next(iter(GZIP_CACHE)))
+                GZIP_CACHE[target] = (key, payload)
+            self.send_response(200)
+            self.send_header("Content-Type", self.guess_type(target))
+            self.send_header("Content-Encoding", "gzip")
+            self.send_header("Content-Length", str(len(payload)))
+            self.send_header("ETag", etag)
+            self.send_header("Vary", "Accept-Encoding")
+            self.end_headers()
+            return io.BytesIO(payload)
+        return super().send_head()
 
     def do_GET(self):
         path = urlparse(self.path).path

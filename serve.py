@@ -12,7 +12,7 @@ from email.utils import format_datetime
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import unquote, urlparse
 
-ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "files")
+ROOT = os.path.dirname(os.path.abspath(__file__))
 BLOGS = os.path.join(ROOT, "blogs.json")
 JOURNAL = os.path.join(ROOT, "journal.json")
 PAGES = os.path.join(ROOT, "pages.json")
@@ -420,8 +420,17 @@ class SiteHandler(SimpleHTTPRequestHandler):
             self.send_header("X-Robots-Tag", "noindex, nofollow")
         super().end_headers()
 
+    def is_private_path(self, url_path):
+        parts = [part for part in unquote(url_path).split("/") if part not in ("", ".")]
+        if any(part.startswith(".") for part in parts):
+            return True
+        return bool(parts) and parts[0] in {"serve.py", "netlify.toml"}
+
     def send_head(self):
         parsed = urlparse(self.path)
+        if self.is_private_path(parsed.path):
+            self.send_error(404)
+            return None
         target = self.translate_path(parsed.path)
         if os.path.isdir(target):
             index = os.path.join(target, "index.html")
@@ -467,6 +476,9 @@ class SiteHandler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = urlparse(self.path).path
+        if self.is_private_path(path):
+            self.send_error(404)
+            return
         if path in ("/backend", "/backend/"):
             self.path = "/admin.html"
             return super().do_GET()

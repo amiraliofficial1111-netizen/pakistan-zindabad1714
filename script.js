@@ -1554,6 +1554,9 @@ if (contactForm) {
     const driveHost = /drive\.google\.com|docs\.google\.com|drive\.usercontent\.google\.com/i.test(value);
     const id = file ? file[1] : (driveHost && query ? query[1] : "");
     if (id) {
+      if (id === "15_eBE4ceGvYafP9aOXT48Xbc0kzSgR7x") {
+        return { kind: "video", src: "assets/trailer.mp4?v=2" };
+      }
       return {
         kind: "embed",
         src: "https://drive.google.com/file/d/" + encodeURIComponent(id) + "/preview",
@@ -1584,14 +1587,20 @@ if (contactForm) {
     if (window.SiteAudio) window.SiteAudio.pause();
   };
 
-  const playCurrent = async () => {
+  const playCurrent = async (force) => {
+    if (playbackRequested && force !== true) return;
+    playbackRequested = true;
     const token = ++loadToken;
     if (!source) {
       setStatus("The trailer file is missing.", "error");
       return;
     }
     setStatus("Loading trailer…", "loading");
-    pauseMusic();
+    video.loop = true;
+    video.muted = true;
+    video.defaultMuted = true;
+    video.autoplay = true;
+    video.playsInline = true;
     if (source.kind === "embed") {
       video.pause();
       video.hidden = true;
@@ -1654,17 +1663,41 @@ if (contactForm) {
   });
   video.addEventListener("ended", () => {
     video.currentTime = 0;
-    setStatus("Play the trailer again.", "ready");
-    start.hidden = false;
-    start.textContent = "Play trailer";
+    const again = video.play();
+    if (again && typeof again.catch === "function") {
+      again.catch(() => {
+        setStatus("Play the trailer again.", "ready");
+        start.hidden = false;
+        start.textContent = "Play trailer";
+      });
+    }
   });
-  video.addEventListener("play", pauseMusic);
-  start.addEventListener("click", playCurrent);
+  video.addEventListener("volumechange", () => {
+    if (!video.muted && video.volume > 0 && !video.paused) pauseMusic();
+  });
+  start.addEventListener("click", () => playCurrent(true));
   if (retry) retry.addEventListener("click", () => {
+    playbackRequested = false;
     video.removeAttribute("src");
     video.load();
-    playCurrent();
+    playCurrent(true);
   });
+
+  let playbackRequested = false;
+
+  const startWhenNear = () => {
+    if (!source) return;
+    if (!("IntersectionObserver" in window)) {
+      playCurrent();
+      return;
+    }
+    const watch = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      watch.disconnect();
+      playCurrent();
+    }, { rootMargin: "0px", threshold: 0.2 });
+    watch.observe(screen);
+  };
 
   window.SiteTrailer = {
     setSource(url) {
@@ -1685,9 +1718,8 @@ if (contactForm) {
         setStatus("The trailer file is missing.", "error");
         return;
       }
-      setStatus("Mark Steffen Video Trailer", "ready");
-      start.hidden = false;
-      start.textContent = "Play trailer";
+      playbackRequested = false;
+      startWhenNear();
     },
   };
 

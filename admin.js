@@ -260,13 +260,6 @@
           field("home.trailer.linkLabel", "Fullscreen link label", "text"),
           field("home.trailer.linkUrl", "Fullscreen link URL", "url"),
         ]),
-        group("Audiobook sample", "", [
-          field("home.audiobook.kicker", "Kicker", "text"),
-          field("home.audiobook.heading", "Heading", "text"),
-          field("home.audiobook.body", "Body", "textarea"),
-          field("home.audiobook.folderLabel", "Folder link label", "text"),
-          field("home.audiobook.folderUrl", "Folder link URL", "url"),
-        ]),
         group("Edition band", "", [
           field("home.edition.kicker", "Kicker", "text"),
           field("home.edition.heading", "Heading", "text"),

@@ -10,9 +10,9 @@
     },
     {
       id: "bright-pop",
-      title: "Bright pop",
-      note: "A full pop song. Free to use, no credit required.",
-      src: "assets/audio/bright-pop.mp3",
+      title: "Music",
+      note: "The site music.",
+      src: "assets/audio/site-music.mp3",
     },
     {
       id: "synth-pop",

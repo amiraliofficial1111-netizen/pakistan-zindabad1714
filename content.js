@@ -1,7 +1,7 @@
 (function applySiteContent() {
   const file = (window.location.pathname.split("/").pop() || "index.html") || "index.html";
   const pageFile = file.endsWith(".html") ? file : "index.html";
-  const bust = "5";
+  const bust = "6";
 
   function escapeText(value) {
     return String(value)

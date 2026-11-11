@@ -10,9 +10,9 @@
     },
     {
       id: "bright-pop",
-      title: "Bright pop",
-      note: "A full pop song. Free to use, no credit required.",
-      src: "assets/audio/bright-pop.mp3",
+      title: "Music",
+      note: "The site music.",
+      src: "assets/audio/site-music.mp3",
     },
     {
       id: "synth-pop",
@@ -308,7 +308,12 @@
       const elapsed = engine.libraryRoot.querySelector("[data-audio-elapsed]");
       const total = engine.libraryRoot.querySelector("[data-audio-duration]");
       if (elapsed) elapsed.textContent = show ? formatTime(time) : "0:00";
-      if (total) total.textContent = show && duration ? formatTime(duration) : "0:00";
+      if (total) {
+        const known = total.getAttribute("data-length");
+        if (show && duration) total.textContent = formatTime(duration);
+        else if (known) total.textContent = known;
+        else total.textContent = "0:00";
+      }
       const previous = engine.libraryRoot.querySelector("[data-audio-prev]");
       if (previous && libraryTrack) {
         const index = currentLibraryIndex();
@@ -342,10 +347,13 @@
     if (status) status.textContent = failed ? "Unavailable" : loading ? "Loading" : playing ? "Playing" : "Paused";
     if (title) title.textContent = engine.musicTrack ? engine.musicTrack.title : "Music";
     if (playButton) {
-      playButton.disabled = playing || loading;
+      const compact = window.matchMedia("(max-width: 700px)").matches;
+      const active = playing || loading;
+      playButton.disabled = compact ? false : active;
       const playLabel = playButton.querySelector("span");
-      if (playLabel) playLabel.textContent = failed ? "Retry" : "Play";
-      playButton.setAttribute("aria-label", failed ? "Try music again" : "Play Music");
+      const playName = failed ? "Retry" : compact && active ? "Pause" : "Play";
+      if (playLabel) playLabel.textContent = playName;
+      playButton.setAttribute("aria-label", failed ? "Try music again" : playName === "Pause" ? "Pause Music" : "Play Music");
       playButton.setAttribute("aria-pressed", playing ? "true" : "false");
     }
     if (pauseButton) {
@@ -418,7 +426,13 @@
     }
     if (now) {
       const named = panel && libraryTrack && engine.status !== "idle";
-      if (!libraryTrack || engine.status === "idle") {
+      if (root.hasAttribute("data-audio-status")) {
+        if (!libraryTrack || engine.status === "idle") now.textContent = root.getAttribute("data-audio-idle") || "Press play to begin";
+        else if (engine.status === "loading") now.textContent = "Loading";
+        else if (engine.status === "playing") now.textContent = "Playing";
+        else if (engine.status === "error") now.textContent = "Unavailable";
+        else now.textContent = "Paused";
+      } else if (!libraryTrack || engine.status === "idle") {
         now.textContent = root.getAttribute("data-audio-idle") || "Choose a chapter.";
       } else if (named && engine.status === "error") {
         now.textContent = engine.error || "This track could not be played.";
@@ -578,13 +592,18 @@
       "</div>",
       '<div class="site-music__bar" data-music-bar role="progressbar" aria-label="Music progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span data-music-progress></span></div>',
       '<div class="site-music__actions">',
-      '<button type="button" data-music-play aria-label="Play Music"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6.2v11.6L18.5 12 8 6.2Z"/></svg><span>Play</span></button>',
+      '<button type="button" data-music-play aria-label="Play Music"><svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6.2v11.6L18.5 12 8 6.2Z"/></svg><svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h3.2v12H8zM12.8 6H16v12h-3.2z"/></svg><span>Play</span></button>',
       '<button type="button" data-music-pause aria-label="Pause Music" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h3.2v12H8zM12.8 6H16v12h-3.2z"/></svg><span>Pause</span></button>',
       "</div>",
       '<p class="site-music__error" data-music-error hidden></p>',
     ].join("");
     widget.querySelector("[data-music-play]").addEventListener("click", () => {
       if (!engine.musicTrack) return;
+      const compact = window.matchMedia("(max-width: 700px)").matches;
+      if (compact && musicIsCurrent() && (engine.status === "playing" || engine.status === "loading")) {
+        pause();
+        return;
+      }
       engine.userStarted = true;
       const track = engine.musicTrack;
       const audio = ensureAudio();
@@ -596,6 +615,13 @@
     });
     document.body.appendChild(widget);
     document.body.classList.add("has-site-music");
+    if (!engine.compactWatch) {
+      engine.compactWatch = true;
+      const compactQuery = window.matchMedia("(max-width: 700px)");
+      const onCompactChange = () => render();
+      if (compactQuery.addEventListener) compactQuery.addEventListener("change", onCompactChange);
+      else if (compactQuery.addListener) compactQuery.addListener(onCompactChange);
+    }
     engine.widget = widget;
     return widget;
   }
@@ -703,6 +729,25 @@
       const playButton = row.querySelector("[data-audio-play]");
       if (playButton) playButton.setAttribute("aria-label", "Play " + title);
     });
+    const lengthEl = root.querySelector("[data-audio-length]");
+    const totalEl = root.querySelector("[data-audio-duration]");
+    const srcRow = root.querySelector("[data-audio-src]");
+    if (lengthEl && srcRow && !lengthEl.dataset.bound) {
+      lengthEl.dataset.bound = "1";
+      const probe = document.createElement("audio");
+      probe.preload = "metadata";
+      probe.src = srcRow.getAttribute("data-audio-src");
+      probe.addEventListener("loadedmetadata", () => {
+        if (!Number.isFinite(probe.duration) || probe.duration <= 0) return;
+        const label = formatTime(probe.duration);
+        lengthEl.textContent = label;
+        if (totalEl) {
+          totalEl.setAttribute("data-length", label);
+          const idle = !engine.current || engine.current.channel === "music" || engine.status === "idle";
+          if (idle) totalEl.textContent = label;
+        }
+      });
+    }
     root.addEventListener("click", (event) => {
       const row = event.target.closest("[data-audio-id]");
       if (!row || !root.contains(row)) return;
